@@ -1,0 +1,744 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Power Electronics: Lecture-by-Lecture Study Guide</title>
+<style>
+@page { size: A4; margin: 14mm 13mm 14mm 13mm; }
+body { font-family: 'DejaVu Sans', Arial, sans-serif; font-size: 9.6pt; color: #1b1b1b; line-height: 1.38; }
+h1 { font-size: 21pt; margin: 0 0 4px; color: #0d3b66; }
+h2 { font-size: 15pt; color: #0d3b66; border-bottom: 2px solid #0d3b66; padding-bottom: 3px; margin-top: 18px; }
+h3 { font-size: 11.5pt; margin: 10px 0 4px; color: #0d3b66; }
+h4 { font-size: 9.6pt; margin: 8px 0 3px; color: #333; text-transform: uppercase; letter-spacing: .3px; }
+ul, ol { margin: 2px 0 4px 18px; padding: 0; }
+li { margin: 1px 0; }
+ul.boxes { list-style: none; margin-left: 2px; }
+ul.boxes li::before { content: '☐ '; color: #0d3b66; }
+ul.mono li { font-family: 'DejaVu Sans Mono', monospace; font-size: 8.6pt; }
+.small { font-size: 8.8pt; color: #555; }
+.cover { border: 3px solid #0d3b66; padding: 18px; border-radius: 6px; }
+.box { background: #f1f6fb; border-left: 4px solid #0d3b66; padding: 8px 12px; margin: 8px 0; }
+.warn { background: #fff6e5; border-left: 4px solid #e08e0b; padding: 8px 12px; margin: 8px 0; }
+.tbl { border-collapse: collapse; width: 100%; font-size: 8.8pt; margin: 6px 0; }
+.tbl td, .tbl th { border: 1px solid #bbb; padding: 3px 5px; vertical-align: top; }
+.tbl th { background: #0d3b66; color: #fff; text-align: left; }
+.lec { border: 1px solid #c9d3de; border-radius: 6px; padding: 8px 10px; margin: 10px 0; break-inside: auto; }
+.lec.pA { border-top: 5px solid #1d6fb8; }
+.lec.pB { border-top: 5px solid #c0392b; }
+.lhead { display: flex; gap: 10px; align-items: flex-start; break-after: avoid; }
+.lid { font-size: 15pt; font-weight: bold; color: #fff; background: #0d3b66; border-radius: 4px; padding: 3px 8px; min-width: 58px; text-align: center; }
+.pB .lid { background: #c0392b; }
+.ltitle { font-weight: bold; font-size: 11.2pt; }
+.lmeta { font-weight: normal; font-size: 8.8pt; color: #444; }
+.lfile { font-weight: normal; font-size: 8.2pt; color: #777; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.day { border: 1px solid #ccc; border-radius: 6px; padding: 6px 10px; margin: 8px 0; break-inside: avoid; }
+.pb { break-before: page; }
+.partbanner { padding: 8px 12px; color: #fff; border-radius: 6px; font-size: 13pt; font-weight: bold; }
+.bA { background: #1d6fb8; } .bB { background: #c0392b; }
+</style></head><body>
+
+<div class="cover">
+<h1>EEE 339 Power Electronics</h1>
+<div style="font-size:13pt;font-weight:bold;">Lecture-by-Lecture Study Guide for the Semester Final (Batch 22)</div>
+<p class="small">Built from all 35 lectures in <i>class slides/</i>, the 2021 to 2024 finals, the Batch 19/20 term tests, your batch's Assessments #5 to #7, the syllabus and the course outcomes. 34 lecture units, 259 topics.</p>
+<div class="box"><b>Exam format:</b> 60 marks. Part A (30) and Part B (30). Each part has 4 questions: Q1 and Q2 are compulsory, then answer Q3 <i>or</i> Q4. You write 3 questions per part, about 10 marks each, 6 questions in total.</div>
+<div class="box"><b>Target: 80 to 90% (48 to 54 marks).</b> Six questions of about 10 marks. Each lost question costs about 10 marks. So the plan is: (1) every ★★★ lecture fully mastered, which covers all of the compulsory questions we can predict; (2) every ★★ lecture learned well enough for the optional choice; (3) one session on the external zone so a surprise sub-part is still worth partial marks.</div>
+</div>
+
+<h2>1. How the paper is set, and why this plan works</h2>
+<ul>
+<li><b>About 60% comes from the teacher's slides and notes, about 20% from previous papers, about 20% is the external examiner's choice.</b></li>
+<li>In the <b>2024 paper (Batch 21, same teacher, same slides)</b>, 7 numericals were slide examples copied with the same numbers: Rashid Ex 3.4 (L19), Rashid Ex 10.4 (L22), Hart Ex 3-5 (L17), Hart Ex 4-1 (L18), Hart Ex 6-6 (L13), and both AC-controller class examples (L31_32). About 91% of the paper's marks came from the slides.</li>
+<li>The external examiner's part repeated older papers (the parallel resonant converter came word for word from 2022) or took textbook items next to the slides (for example the SCR gate-pulse-width numerical).</li>
+<li><b>Inverters got only 5 marks in 2024</b>, but your batch had two inverter assessments (#5 and #6). Expect a full inverter question in Part B.</li>
+<li>Topics asked in <b>all four</b> years: SCR two-transistor model, cycloconverter, device comparison, full-wave rectifiers, 3-phase rectifiers, buck / buck-boost numericals.</li>
+</ul>
+
+<h2>2. Part A and Part B: how the lectures are divided</h2>
+<p>This split follows the 2024 paper (the same teacher). In 2024, Part A held devices and Rashid-style rectifier questions; Part B held Hart DC-DC and rectifier examples, resonant, inverters, AC-AC, cycloconverter and solar. The boundary is not strict, so <b>L09 (linear regulator vs SMPS), L17 and L18 (Hart rectifier examples) can appear in either part.</b> Prepare everything; use the split to plan and to balance your time.</p>
+<div class="partbanner bA">PART A (30 marks): Power Devices + Rectifiers</div>
+<table class='tbl'><tr><th>Lecture</th><th>Title</th><th>Priority</th><th>Time</th><th>When</th></tr><tr><td>L01</td><td>Introduction to Power Electronics</td><td>★</td><td>0.25 h</td><td>Day 1</td></tr><tr><td>L02</td><td>Ideal Switch, Practical Devices and Switch Specifications</td><td>★★</td><td>0.5 h</td><td>Day 1</td></tr><tr><td>L03</td><td>Power Semiconductor Switches and Diodes: Classification and Choice</td><td>★★</td><td>0.5 h</td><td>Day 1</td></tr><tr><td>L04</td><td>Power Diodes</td><td>★★★</td><td>0.75 h</td><td>Day 1</td></tr><tr><td>L05</td><td>Power BJT</td><td>★★★</td><td>0.75 h</td><td>Day 1</td></tr><tr><td>L06</td><td>Power MOSFET and IGBT</td><td>★★★</td><td>1 h</td><td>Day 1</td></tr><tr><td>L07</td><td>SCR (Thyristor)</td><td>★★★</td><td>1.25 h</td><td>Day 1</td></tr><tr><td>L08</td><td>SCR Dynamic Characteristics and Commutation</td><td>★★★</td><td>1 h</td><td>Day 1</td></tr><tr><td>L16</td><td>AC-DC Rectifier 01: Performance Parameters, Single-Phase Half-Wave (R load)</td><td>★★</td><td>0.75 h</td><td>Day 1</td></tr><tr><td>L17</td><td>AC-DC Rectifier 02: Half-Wave RL, RL-Source, Freewheeling Diode, Controlled Half-Wave</td><td>★★★</td><td>1.5 h</td><td>Day 1</td></tr><tr><td>L18</td><td>AC-DC Rectifier 03: Single-Phase Full-Wave Rectifiers (R, RL, Capacitor Filter)</td><td>★★★</td><td>1 h</td><td>Day 1</td></tr><tr><td>L19</td><td>AC-DC Rectifier 04: Full-Wave Rectifier with Highly Inductive Load (Input PF)</td><td>★★★</td><td>0.75 h</td><td>Day 1</td></tr><tr><td>L20</td><td>AC-DC Rectifier 05: Controlled Full-Wave Rectifiers and Single-Phase Full Converter</td><td>★★★</td><td>1.25 h</td><td>Day 2</td></tr><tr><td>L21</td><td>AC-DC Rectifier 06: Multiphase Star Rectifiers</td><td>★★</td><td>0.5 h</td><td>Day 2</td></tr><tr><td>L22</td><td>AC-DC Rectifier 07: Three-Phase Bridge Rectifier and Three-Phase Full Converter</td><td>★★★</td><td>1.5 h</td><td>Day 2</td></tr><tr><td></td><td><b>Total</b></td><td></td><td><b>13.25 h</b></td><td></td></tr></table>
+<div class="partbanner bB">PART B (30 marks): DC-DC, Resonant, Inverters, AC-AC, Cycloconverter, Solar</div>
+<table class='tbl'><tr><th>Lecture</th><th>Title</th><th>Priority</th><th>Time</th><th>When</th></tr><tr><td>L09</td><td>DC-DC Converter 01: Linear Regulator, Basic Switching Converter, Buck Analysis</td><td>★★★</td><td>1 h</td><td>Day 2</td></tr><tr><td>L10</td><td>DC-DC Converter 02: Buck Converter Example and Ripple</td><td>★★★</td><td>0.5 h</td><td>Day 2</td></tr><tr><td>L11</td><td>DC-DC Converter 03: Boost Converter</td><td>★★★</td><td>0.75 h</td><td>Day 2</td></tr><tr><td>L12</td><td>DC-DC Converter 04: Boost Design 2, Inductor Resistance, Capacitor ESR</td><td>★★</td><td>0.75 h</td><td>Day 2</td></tr><tr><td>L13</td><td>DC-DC Converter 05: Buck-Boost Converter</td><td>★★★</td><td>0.75 h</td><td>Day 2</td></tr><tr><td>L14</td><td>DC-DC Converter 06: Ćuk Converter</td><td>★★</td><td>0.75 h</td><td>Day 2</td></tr><tr><td>L15</td><td>DC-DC Converter 07: SEPIC and Interleaved Converters</td><td>★★★</td><td>0.75 h</td><td>Day 2</td></tr><tr><td>L23</td><td>Resonant Converter 01: Zero-Current Switching (ZCS)</td><td>★★</td><td>0.75 h</td><td>Day 3</td></tr><tr><td>L24</td><td>Resonant Converter 02: Zero-Voltage Switching (ZVS) and Series Resonant Inverter</td><td>★★</td><td>0.75 h</td><td>Day 3</td></tr><tr><td>L25</td><td>Inverter 01: Half-Bridge Inverter, Fourier Analysis, Performance Parameters</td><td>★★★</td><td>1.25 h</td><td>Day 3</td></tr><tr><td>L26</td><td>Inverter 02: Single-Phase Full-Bridge Inverter (R, L and RL loads)</td><td>★★★</td><td>1 h</td><td>Day 3</td></tr><tr><td>L27</td><td>Problem Solving Class 01 = Assessment #5: Quasi-Square-Wave Full-Bridge Inverter</td><td>★★★</td><td>0.5 h</td><td>Day 3</td></tr><tr><td>L28</td><td>Inverter 03: Three-Phase Inverter (180° conduction)</td><td>★★★</td><td>1.25 h</td><td>Day 3</td></tr><tr><td>L29</td><td>Inverter 04: Multilevel Inverters (Cascaded H-Bridge)</td><td>★★★</td><td>1 h</td><td>Day 3</td></tr><tr><td>L30</td><td>Problem Solving Class 02 = Assessment #6: Three-Phase Inverter, 120° Conduction</td><td>★★★</td><td>0.5 h</td><td>Day 3</td></tr><tr><td>L31_32</td><td>AC-AC Converter 01-02: Single-Phase and Three-Phase AC Voltage Controllers</td><td>★★★</td><td>1.5 h</td><td>Day 4</td></tr><tr><td>L33</td><td>AC-AC Converter 03: Cycloconverters</td><td>★★★</td><td>0.75 h</td><td>Day 4</td></tr><tr><td>L34</td><td>Problem Solving Class 03 = Assessment #7: Single-Phase AC Voltage Controller</td><td>★★★</td><td>0.25 h</td><td>Day 4</td></tr><tr><td>L35</td><td>Solar PV System and Course Wrap-Up</td><td>★★</td><td>0.5 h</td><td>Day 4</td></tr><tr><td></td><td><b>Total</b></td><td></td><td><b>15.25 h</b></td><td></td></tr></table>
+
+<h2>3. How to study each lecture: the 5-step method</h2>
+<ol>
+<li><b>Skim (5 min).</b> Read the lecture's topic list in this guide, then flip through the slide once.</li>
+<li><b>Redraw (15 to 20 min).</b> Close the slide. Draw every circuit and waveform yourself. Waveforms must be drawn "with proper alignment" (stacked on the same ωt axis). Many marks depend on this.</li>
+<li><b>Derive (15 to 20 min).</b> Write each derivation from start to boxed result without looking. If you get stuck, look once, then start again from the top.</li>
+<li><b>Solve (20 to 30 min).</b> Solve every "Do with your own hand" item with the book closed. Compare every number with this guide.</li>
+<li><b>Recall (5 min).</b> Answer the self-test questions out loud or on paper. Tick the boxes only when you can do it without help. Copy formulas onto your one-page formula sheet.</li>
+</ol>
+<div class="warn"><b>Rules for 4 days:</b> Do not read passively. Writing beats reading. Study in 50-minute blocks with 10-minute breaks. Use the checklist file (Topic_Checklist.html) to tick off every topic. Sleep at least 6 hours each night; memory consolidates during sleep.</div>
+
+<h2>4. Four-day timetable</h2>
+<div class='day'><h3>Day 1: Part A, Devices and Rectifiers I</h3><p class='small'>Lectures: L01 to L08, L16 to L19 &middot; lecture study time 10 h</p><ol><li><b>L01</b> Introduction to Power Electronics (0.25 h)</li><li><b>L02</b> Ideal Switch, Practical Devices and Switch Specifications (0.5 h)</li><li><b>L03</b> Power Semiconductor Switches and Diodes: Classification and Choice (0.5 h)</li><li><b>L04</b> Power Diodes (0.75 h)</li><li><b>L05</b> Power BJT (0.75 h)</li><li><b>L06</b> Power MOSFET and IGBT (1 h)</li><li><b>L07</b> SCR (Thyristor) (1.25 h)</li><li><b>L08</b> SCR Dynamic Characteristics and Commutation (1 h)</li><li><b>L16</b> AC-DC Rectifier 01: Performance Parameters, Single-Phase Half-Wave (R load) (0.75 h)</li><li><b>L17</b> AC-DC Rectifier 02: Half-Wave RL, RL-Source, Freewheeling Diode, Controlled Half-Wave (1.5 h)</li><li><b>L18</b> AC-DC Rectifier 03: Single-Phase Full-Wave Rectifiers (R, RL, Capacitor Filter) (1 h)</li><li><b>L19</b> AC-DC Rectifier 04: Full-Wave Rectifier with Highly Inductive Load (Input PF) (0.75 h)</li></ol><p><b>Close the day:</b> End of day: 30 minutes closed-book recall of every self-test question from today.</p></div><div class='day'><h3>Day 2: Part A, Rectifiers II, and Part B, DC-DC</h3><p class='small'>Lectures: L20 to L22, L09 to L15 &middot; lecture study time 8.5 h</p><ol><li><b>L20</b> AC-DC Rectifier 05: Controlled Full-Wave Rectifiers and Single-Phase Full Converter (1.25 h)</li><li><b>L21</b> AC-DC Rectifier 06: Multiphase Star Rectifiers (0.5 h)</li><li><b>L22</b> AC-DC Rectifier 07: Three-Phase Bridge Rectifier and Three-Phase Full Converter (1.5 h)</li><li><b>L09</b> DC-DC Converter 01: Linear Regulator, Basic Switching Converter, Buck Analysis (1 h)</li><li><b>L10</b> DC-DC Converter 02: Buck Converter Example and Ripple (0.5 h)</li><li><b>L11</b> DC-DC Converter 03: Boost Converter (0.75 h)</li><li><b>L12</b> DC-DC Converter 04: Boost Design 2, Inductor Resistance, Capacitor ESR (0.75 h)</li><li><b>L13</b> DC-DC Converter 05: Buck-Boost Converter (0.75 h)</li><li><b>L14</b> DC-DC Converter 06: Ćuk Converter (0.75 h)</li><li><b>L15</b> DC-DC Converter 07: SEPIC and Interleaved Converters (0.75 h)</li></ol><p><b>Close the day:</b> End of day: solve 2024 Part A (Q1 to Q3) under time (75 minutes).</p></div><div class='day'><h3>Day 3: Part B, Resonant and Inverters</h3><p class='small'>Lectures: L23 to L30 &middot; lecture study time 7 h</p><ol><li><b>L23</b> Resonant Converter 01: Zero-Current Switching (ZCS) (0.75 h)</li><li><b>L24</b> Resonant Converter 02: Zero-Voltage Switching (ZVS) and Series Resonant Inverter (0.75 h)</li><li><b>L25</b> Inverter 01: Half-Bridge Inverter, Fourier Analysis, Performance Parameters (1.25 h)</li><li><b>L26</b> Inverter 02: Single-Phase Full-Bridge Inverter (R, L and RL loads) (1 h)</li><li><b>L27</b> Problem Solving Class 01 = Assessment #5: Quasi-Square-Wave Full-Bridge Inverter (0.5 h)</li><li><b>L28</b> Inverter 03: Three-Phase Inverter (180° conduction) (1.25 h)</li><li><b>L29</b> Inverter 04: Multilevel Inverters (Cascaded H-Bridge) (1 h)</li><li><b>L30</b> Problem Solving Class 02 = Assessment #6: Three-Phase Inverter, 120° Conduction (0.5 h)</li></ol><p><b>Close the day:</b> End of day: redo Assessments #5 and #6 from memory, then 2023 Q5.</p></div><div class='day'><h3>Day 4: Part B, AC-AC and Solar, External Zone, Full Mock</h3><p class='small'>Lectures: L31 to L35, external zone, mock exam &middot; lecture study time 3 h</p><ol><li><b>L31_32</b> AC-AC Converter 01-02: Single-Phase and Three-Phase AC Voltage Controllers (1.5 h)</li><li><b>L33</b> AC-AC Converter 03: Cycloconverters (0.75 h)</li><li><b>L34</b> Problem Solving Class 03 = Assessment #7: Single-Phase AC Voltage Controller (0.25 h)</li><li><b>L35</b> Solar PV System and Course Wrap-Up (0.5 h)</li><li><b>External zone</b> (section 6), 1.5 h</li><li><b>Full mock exam</b>, 6 questions, real time limit</li><li><b>Formula sheet and waveform redraw</b>, 1.5 h</li></ol><p><b>Close the day:</b> Mock: write 6 questions (3 from each part) in the real exam time. Then revise the formula sheet and redraw all key waveforms. Sleep early.</p></div>
+
+<div class="pb"></div>
+<h2>5. Lecture-by-lecture guide</h2>
+<div class="partbanner bA">PART A: Power Devices (L01 to L08) and Rectifiers (L16 to L22)</div>
+
+<section class="lec pA">
+  <div class="lhead">
+    <div class="lid">L01</div>
+    <div class="ltitle">Introduction to Power Electronics
+      <div class="lmeta">Part A &middot; ★ Light &middot; 0.25 h &middot; Day 1 &middot; Course overview (no slide content in repo)</div>
+      <div class="lfile">Slide: class slides/lec 1 (empty file)</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (3)</h4><ul class="boxes"><li>What power electronics is: processing and controlling electric power with switches</li><li>Four converter families: AC-DC (rectifier), DC-DC (chopper/regulator), DC-AC (inverter), AC-AC (controller/cycloconverter)</li><li>Applications: drives, power supplies, HVDC, renewable energy, EVs</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Draw the 4 converter blocks (input to output) from memory</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>Used only as a lead-in for &#x27;applications&#x27; parts of questions</li></ul>
+      
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Read the syllabus page once and memorise the 4 converter types with 2 applications each. 15 minutes.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Name the four converter types with one application each</li></ul>
+</section>
+<section class="lec pA">
+  <div class="lhead">
+    <div class="lid">L02</div>
+    <div class="ltitle">Ideal Switch, Practical Devices and Switch Specifications
+      <div class="lmeta">Part A &middot; ★★ Important &middot; 0.5 h &middot; Day 1 &middot; Rashid ch.4 (devices)</div>
+      <div class="lfile">Slide: Lecture 02 Ideal Switch.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (10)</h4><ul class="boxes"><li>Ideal switch characteristics: on-state (I_F to infinity, V_ON and R_ON to 0)</li><li>Ideal switch characteristics: off-state (V_BR to infinity, I_OFF to 0, R_OFF to infinity)</li><li>Ideal switching: t_d, t_r, t_s, t_f to 0; low gate power/voltage/current</li><li>Controllable turn-on and turn-off; pulse-only gate signal</li><li>High dv/dt and di/dt capability; low thermal impedance; high i²t (fault current)</li><li>Characteristics of practical devices: turn-on/turn-off waveforms, on-state loss P_ON, gate loss P_G</li><li>Switching loss P_SW during turn-on and turn-off</li><li>Switch specifications: voltage ratings, current ratings (average, rms, repetitive, non-repetitive peak)</li><li>Switch specifications: switching speed, di/dt rating, dv/dt rating (junction capacitance), snubbers</li><li>Switch specifications: I²t for fusing, junction/case/storage temperatures, thermal resistance (junction-case, case-sink, sink-ambient)</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Write the 10 ideal-switch characteristics in a numbered list from memory</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>Feeds every &#x27;compare devices / ideal vs practical&#x27; question (2021 Q1a, 2023 Q6d)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>P_total = P_ON + P_SW + P_G (conduction + switching + gate)</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Read once, then close the slide and write the 10 ideal characteristics.</li><li>Make a 2-column table: ideal vs practical for each characteristic.</li><li>Remember dv/dt and di/dt here; you need them again in L07 (SCR turn-on, protection).</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>List any 8 characteristics of an ideal switch</li><li>What do dv/dt and di/dt ratings mean?</li></ul>
+</section>
+<section class="lec pA">
+  <div class="lhead">
+    <div class="lid">L03</div>
+    <div class="ltitle">Power Semiconductor Switches and Diodes: Classification and Choice
+      <div class="lmeta">Part A &middot; ★★ Important &middot; 0.5 h &middot; Day 1 &middot; Rashid ch.1 and ch.2</div>
+      <div class="lfile">Slide: Lecture 03 Power Semiconductor Switches and Diodes.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (10)</h4><ul class="boxes"><li>Current-controlled (BJT) vs voltage-controlled (MOSFET) gate drive; why MOS-gate is preferred</li><li>Super-power device requirements; SiC devices (lower R_on, ~10x voltage rating)</li><li>Classification (9 classes): uncontrolled (diode), controlled-on only (SCR), controlled on and off (BJT, MOSFET, GTO, IGBT, SIT, SITH, MCT)</li><li>Classification: continuous gate (BJT, MOSFET, IGBT, SIT) vs pulse gate (SCR, GTO, MCT)</li><li>Classification: bipolar-voltage (SCR, GTO) vs unipolar-voltage; bidirectional-current (TRIAC, RCT) vs unidirectional</li><li>Device symbols and v-i characteristics (SCR, GTO, MCT, SITH, TRIAC, MOSFET, IGBT)</li><li>Control characteristics of power devices (gate signal vs output waveforms)</li><li>Device choice: DC input (MOSFET/IGBT) vs AC input (thyristor, TRIAC); MOSFET vs IGBT by voltage/current/frequency</li><li>Power diode structure: n⁻ drift layer, wider depletion, higher V_B</li><li>Diode ratings: breakdown voltage V_B, forward voltage V_F, reverse current I_R</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Make the BJT / MOSFET / IGBT / SCR / GTO / MCT comparison table (power, speed, drive, R_on, blocking voltage)</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2021 Q1a (BJT vs MOSFET vs IGBT table, 7 marks)</li><li>2023 Q6d (BJT, MOSFET, GTO, IGBT, MCT by power and speed)</li><li>2022 Q4a (BJT vs MOSFET)</li></ul>
+      
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>This lecture is mainly for one table. Build the comparison table once and keep it on your formula sheet.</li><li>Speed: MOSFET &gt; IGBT &gt; BJT &gt; GTO &gt; SCR. Power: SCR &gt; GTO &gt; IGBT &gt; BJT &gt; MOSFET.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Compare BJT, MOSFET, IGBT, GTO, MCT by power capacity and switching speed</li><li>Which devices need a continuous gate signal and which need only a pulse?</li></ul>
+</section>
+<section class="lec pA">
+  <div class="lhead">
+    <div class="lid">L04</div>
+    <div class="ltitle">Power Diodes
+      <div class="lmeta">Part A &middot; ★★★ Must master &middot; 0.75 h &middot; Day 1 &middot; Rashid ch.2</div>
+      <div class="lfile">Slide: Lecture 04 Power Diodes.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (10)</h4><ul class="boxes"><li>Dynamic characteristics: intervals t0, t1 (turn-on) and t2, t3, t4 (turn-off)</li><li>Reverse recovery time t_rr = t_a + t_b (t3 + t4), peak reverse current I_RR, stored charge Q_RR</li><li>Importance of t_rr (decides switching frequency, losses, overvoltage)</li><li>Diode types: general-purpose, fast-recovery, Schottky</li><li>Common diodes: small-signal, power rectifier, Zener, Schottky, LED, etc.</li><li>Schottky diode: metal-semiconductor barrier, low V_F, almost zero t_rr, low reverse voltage</li><li>SiC Schottky diodes: features (high voltage, fast, low loss)</li><li>Series-connected diodes: voltage sharing with parallel resistors (and capacitors)</li><li>Parallel-connected diodes: current sharing with series resistors/inductors</li><li>Applications: rectifiers, freewheeling diode, voltage multiplier</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Draw the diode turn-off current waveform with t_a, t_b, t_rr, I_RR, Q_RR labelled</li><li>Numerical: di/dt = 20 A/µs, t_rr = 5 µs gives Q_RR = 250 µC, I_RR = 100 A</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2021 Q2a (significance of t_rr)</li><li>2021 Q4c and 2023 Q1c (I_RR, Q_RR numerical, same numbers)</li><li>2023 Q1b (define I_RR, t_rr, importance)</li><li>TT-1 2020 (reverse recovery with diagram)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>Q_RR = ½ I_RR t_rr</li><li>I_RR = t_a (di/dt) ≈ t_rr (di/dt)</li><li>t_rr = √(2Q_RR / (di/dt))</li><li>I_RR = √(2Q_RR (di/dt))</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Draw the turn-off waveform 3 times until you can label it without looking.</li><li>Learn the 4 formulas and do the 20 A/µs numerical. It has appeared 3 times.</li><li>Write one line each on Schottky, fast-recovery and series/parallel diodes.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Define t_rr and I_RR and explain their importance</li><li>Solve: di/dt = 20 A/µs, t_rr = 5 µs; find I_RR and Q_RR</li><li>Why are resistors needed across series-connected diodes?</li></ul>
+</section>
+<section class="lec pA">
+  <div class="lhead">
+    <div class="lid">L05</div>
+    <div class="ltitle">Power BJT
+      <div class="lmeta">Part A &middot; ★★★ Must master &middot; 0.75 h &middot; Day 1 &middot; Rashid ch.4</div>
+      <div class="lfile">Slide: Lecture 05 Power BJT.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (10)</h4><ul class="boxes"><li>Structure: vertical n⁺-n⁻-p-n⁺, collector drift region (raises blocking voltage)</li><li>Basics: large current/power handling, heavily doped emitter, low β, big metal body</li><li>Switching operation: saturation (V_CE small) or cutoff; cross the active region fast</li><li>Modes: cut-off, active, quasi-saturation, hard saturation</li><li>Primary breakdown (avalanche of C-B junction)</li><li>Second breakdown: current crowding, hot spots, thermal runaway; how to avoid it</li><li>Safe operating area: FBSOA (I_CM, power limit, second-breakdown limit, V_CEO) and RBSOA</li><li>Switching characteristics: t_d, t_r (turn-on), t_s, t_f (turn-off); t_on, t_off</li><li>Base-drive shaping: overdrive at turn-on, reverse base current to reduce t_s and t_f</li><li>Applications of power BJT</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Draw the BJT switching waveform (i_B, i_C, v_CE) with t_d, t_r, t_s, t_f</li><li>Draw the output characteristics showing quasi-saturation and hard saturation</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2022 Q4b (switching characteristics of BJT, 6 marks)</li><li>2024 Q3b (secondary breakdown: why in BJT and thyristor but not MOSFET, 7 marks)</li><li>2024 Q1d (why BJT/SCR cannot be paralleled but MOSFET can)</li><li>2023 Q6c (constructional features of power BJT)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>t_on = t_d + t_r</li><li>t_off = t_s + t_f</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Learn 3 diagrams: structure, output characteristics (4 modes), and switching waveform.</li><li>Write a 6-line answer on second breakdown: cause (negative temperature coefficient of resistance, so current crowds into hot spots), effect, why MOSFETs do not have it (positive temperature coefficient of R_DS(on)).</li><li>Use the same temperature-coefficient argument for parallel operation: MOSFETs share current naturally; BJTs and SCRs suffer current hogging.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Explain the switching characteristics of a BJT with waveforms</li><li>What is secondary breakdown? Why does it not occur in MOSFETs?</li><li>Why can MOSFETs be paralleled easily but BJTs cannot?</li></ul>
+</section>
+<section class="lec pA">
+  <div class="lhead">
+    <div class="lid">L06</div>
+    <div class="ltitle">Power MOSFET and IGBT
+      <div class="lmeta">Part A &middot; ★★★ Must master &middot; 1 h &middot; Day 1 &middot; Rashid ch.4</div>
+      <div class="lfile">Slide: Lecture 06 Power MOSFET and IGBT.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (13)</h4><ul class="boxes"><li>Power MOSFET types: n/p-channel enhancement, n-channel depletion</li><li>VDMOS (double-diffused vertical) structure vs lateral MOSFET; why vertical gives high V and I</li><li>Features: voltage-controlled, high input impedance, fast, no second breakdown, unipolar</li><li>Disadvantages: high R_DS(on) at high voltage, high conduction loss</li><li>Operating regions: cut-off, ohmic (triode), active (saturation); pinch-off condition</li><li>Turn-on analysis: intervals (delay, rise, Miller plateau), gate charge</li><li>Turn-off analysis: intervals until current falls to zero</li><li>MOSFET safe operating area</li><li>IGBT: why needed (MOSFET gate plus BJT conduction), conductivity modulation</li><li>IGBT structure: p⁺ injecting layer, n⁻ drift (n-base), n⁺ buffer; punch-through vs non-punch-through</li><li>IGBT equivalent circuit / half-cell model, operation</li><li>IGBT advantages (low on-state drop, voltage drive, high power) and disadvantages (slower than MOSFET, tail current, latch-up)</li><li>SCR basic structure (bridge to L07)</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Draw the VDMOS cross-section</li><li>Draw the IGBT cross-section and equivalent circuit</li><li>Write a PT vs NPT IGBT comparison (4 points)</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2021 Q3d (pinch-off in power MOSFET)</li><li>2022 Q6b (advantages of IGBT), 2022 Q6d (half-cell model of IGBT)</li><li>2023 Q3b (IGBT cross-section, PT vs NPT)</li><li>2022 Q4a (BJT vs MOSFET as a switch)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>MOSFET drain current (active): I_D = K(V_GS − V_T)²</li><li>Ohmic region: I_D ≈ 2K(V_GS − V_T)V_DS</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Draw the MOSFET and IGBT cross-sections 2 times each. Label every layer.</li><li>Make a list of 5 IGBT advantages and 3 disadvantages.</li><li>Learn the MOSFET regions with the output characteristic curve and the pinch-off line V_DS = V_GS − V_T.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Draw the cross-section of an IGBT and differentiate PT and NPT IGBTs</li><li>Write 4 advantages of IGBT as a switch</li><li>Explain pinch-off in a power MOSFET</li></ul>
+</section>
+<section class="lec pA">
+  <div class="lhead">
+    <div class="lid">L07</div>
+    <div class="ltitle">SCR (Thyristor)
+      <div class="lmeta">Part A &middot; ★★★ Must master &middot; 1.25 h &middot; Day 1 &middot; Rashid ch.9</div>
+      <div class="lfile">Slide: Lecture 07 SCR.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (11)</h4><ul class="boxes"><li>Thyristor family; bistable switch; SCR vs GTO; thyristor vs transistor (losses vs speed)</li><li>PNPN structure, three junctions J1, J2, J3, terminals A, K, G</li><li>I-V characteristics: forward blocking, forward breakover V_BO, on-state, reverse blocking, reverse breakdown</li><li>Latching current I_L and holding current I_H (I_L &gt; I_H)</li><li>Turn-on methods: thermal, light, high forward voltage, dv/dt, gate current</li><li>Two-transistor model and anode current I_A = (α₂I_G + I_CBO1 + I_CBO2) / (1 − (α₁ + α₂))</li><li>Regenerative (latching) action: α₁ + α₂ → 1</li><li>Thyristor transient model: junction capacitance; dv/dt turn-on (i = C_j2 dv/dt)</li><li>Turning off: reduce anode current below I_H; turn-off time t_q = t_rr + t_rc</li><li>Forced-commutated thyristor circuit</li><li>di/dt protection (series inductor) and dv/dt protection (RC snubber)</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Derive I_A from the two-transistor model (draw the model first)</li><li>Draw the SCR I-V curve with I_L, I_H, V_BO, gate-current family</li><li>Gate pulse width numerical (2024 Q1c): i(t) = (V_s/R)(1 − e^(−tR/L)); t_G = t(I_H) + t_d ≈ 62.2 µs</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>Two-transistor model in EVERY final: 2021 Q2b, 2022 Q4c, 2023 Q2a, 2024 Q1a</li><li>2021 TT-1 (five turn-on methods; effect of dv/dt)</li><li>2020 TT-1 (I-V curve, holding and latching current)</li><li>2024 Q1c (minimum gate pulse width; this example is not in the slides)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>I_A = (α₂I_G + I_CBO1 + I_CBO2) / (1 − α₁ − α₂)</li><li>t_q = t_rr + t_rc</li><li>i_j2 = C_j2 (dv/dt)</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>This is the single most repeated topic in 4 years. Practise the derivation until you can write it in 6 minutes.</li><li>Steps: split PNPN into PNP (Q1) and NPN (Q2), then write I_C1 = α₁I_A + I_CBO1 and I_C2 = α₂I_K + I_CBO2, then I_A = I_C1 + I_C2 with I_K = I_A + I_G, then solve for I_A.</li><li>Learn 5 turn-on methods with one line each, and the I-V curve.</li><li>Do the gate pulse width numerical once (V_s = √2·120·sin30° = 84.85 V).</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>With the two-transistor model, explain the turn-on of an SCR (with equations)</li><li>Define latching and holding current on the I-V curve</li><li>Name 5 methods to turn on an SCR; explain the dv/dt effect</li></ul>
+</section>
+<section class="lec pA">
+  <div class="lhead">
+    <div class="lid">L08</div>
+    <div class="ltitle">SCR Dynamic Characteristics and Commutation
+      <div class="lmeta">Part A &middot; ★★★ Must master &middot; 1 h &middot; Day 1 &middot; Rashid ch.9 / commutation classes</div>
+      <div class="lfile">Slide: Lecture 08 SCR Commutation.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (11)</h4><ul class="boxes"><li>Dynamic turn-on: delay time t_d, rise time t_r, spread time t_p; t_on</li><li>Dynamic turn-off switching characteristics; reverse recovery time t_rr and gate recovery time t_gr; t_q = t_rr + t_gr</li><li>Important point: circuit turn-off time t_c must exceed device turn-off time t_q</li><li>Commutation definition; two conditions to turn off an SCR</li><li>Natural (line / Class F) commutation: AC supply, rectifiers, AC controllers, cycloconverters</li><li>Forced commutation: needed in DC circuits (choppers, inverters)</li><li>Class A: self/resonant/load commutation (underdamped RLC load)</li><li>Class B: resonant LC across the SCR (self commutation)</li><li>Class C: complementary commutation (main SCR + auxiliary SCR + capacitor)</li><li>Class D: auxiliary (impulse) commutation</li><li>Class E: external pulse commutation</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Draw one forced commutation circuit (Class C) with waveforms</li><li>Draw the turn-on and turn-off characteristic (i_A, v_AK vs t)</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2022 Q4d (methods of SCR turn-on and turn-off, 8 marks)</li><li>2024 Q1b (natural vs forced commutation with a device example)</li><li>2021 Q3c (describe one forced commutation circuit with waveforms)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>t_on = t_d + t_r + t_p</li><li>t_q = t_rr + t_gr</li><li>Condition: t_c &gt; t_q</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Learn natural vs forced as a 2-column table (source of reverse voltage, AC vs DC, examples).</li><li>Learn Class A to E with one line each. Pick Class C and learn its full circuit and waveforms. This is enough for the &#x27;describe any one&#x27; question.</li><li>Example for natural commutation: SCR in an AC phase-controlled rectifier. For forced: SCR in a DC chopper.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Explain natural and forced commutation with one example each</li><li>Describe Class C commutation with circuit and waveforms</li><li>Why must t_c be greater than t_q?</li></ul>
+</section>
+<section class="lec pA">
+  <div class="lhead">
+    <div class="lid">L16</div>
+    <div class="ltitle">AC-DC Rectifier 01: Performance Parameters, Single-Phase Half-Wave (R load)
+      <div class="lmeta">Part A &middot; ★★ Important &middot; 0.75 h &middot; Day 1 &middot; Rashid (old ed.) ch.2: 2-5 to 2-8</div>
+      <div class="lfile">Slide: Lecture 16 AC-DC Rectifier 01.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (7)</h4><ul class="boxes"><li>Performance parameters: V_dc, I_dc, P_dc, V_rms, I_rms, P_ac</li><li>Efficiency η = P_dc/P_ac; form factor FF = V_rms/V_dc; ripple factor RF = √(FF² − 1)</li><li>Transformer utilization factor TUF = P_dc/(V_s I_s); peak inverse voltage PIV</li><li>Displacement factor, harmonic factor HF, input power factor PF, crest factor</li><li>Single-phase half-wave rectifier with R load: waveforms and analysis</li><li>Results: η = 40.5%, FF = 157%, RF = 121%, TUF = 0.286, PIV = V_m</li><li>DC saturation problem of the transformer core in half-wave rectifiers</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Derive V_dc = V_m/π and V_rms = V_m/2, then compute η, FF, RF, TUF for the half-wave R rectifier</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>Definitions support every rectifier numerical (TUF and efficiency asked in 2024 Q3c)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>V_dc = 0.318V_m, V_rms = 0.5V_m (half-wave R)</li><li>η = P_dc/P_ac</li><li>FF = V_rms/V_dc</li><li>RF = √(FF² − 1)</li><li>TUF = P_dc/(V_s I_s)</li><li>HF = √((I_s/I_s1)² − 1)</li><li>PF = (I_s1/I_s) cos φ</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Learn the 8 definitions as formulas. They are used in L19, L20 and L22.</li><li>Do the half-wave numbers yourself once (η = 40.5%, RF = 121%, TUF = 0.286).</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Define FF, RF, TUF, HF, DF and PF</li><li>Find η, FF, RF, TUF and PIV of a single-phase half-wave rectifier with R load</li></ul>
+</section>
+<section class="lec pA">
+  <div class="lhead">
+    <div class="lid">L17</div>
+    <div class="ltitle">AC-DC Rectifier 02: Half-Wave RL, RL-Source, Freewheeling Diode, Controlled Half-Wave
+      <div class="lmeta">Part A &middot; ★★★ Must master &middot; 1.5 h &middot; Day 1 &middot; Hart ch.3: 3.3, 3.5, 3.6, 3.7, 3.9</div>
+      <div class="lfile">Slide: Lecture 17 AC-DC Rectifier 02.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (8)</h4><ul class="boxes"><li>Half-wave rectifier with RL load: current = forced + natural response; extinction angle β</li><li>Average current, rms current, power and PF for RL load</li><li>RL-source load (battery charging): α = sin⁻¹(V_dc/V_m), current expression, P_R, P_dc, PF</li><li>Inductor-source load</li><li>Freewheeling diode: purpose, operation, waveforms of v_o, i_D1, i_D2</li><li>Freewheeling diode with large L (L/R → ∞): constant load current</li><li>Controlled half-wave rectifier (SCR) with R load: V_o = (V_m/2π)(1 + cosα)</li><li>Controlled half-wave rectifier with RL load</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Ex 3-2 (R = 100 Ω, L = 0.1 H, V_m = 100 V): P = 22.4 W, pf = 0.67</li><li>Ex 3-5 RL-source (R = 2 Ω, L = 20 mH, V_dc = 100 V, 120 V): P_R ≈ 31.7 W, P_dc = 225 W, pf ≈ 0.54</li><li>Ex 3-7 freewheeling (R = 2 Ω, L = 25 mH, V_m = 100 V): V_o = 31.8 V, I_o = 15.9 A</li><li>Ex 3-8 freewheeling, L → ∞ (240 V, R = 8 Ω): V_o = 108 V, I_o = 13.5 A, P ≈ 1459 W, pf ≈ 0.64</li><li>Ex 3-10 controlled half-wave (40 V across 100 Ω from 120 V): α = 61.2°, P = 57.2 W, pf = 0.63</li><li>Derive i(ωt), I_avg, I_rms, P and PF for a half-wave RL-source load (2022 Q1b)</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2024 Q4b = Ex 3-5 verbatim (10 marks)</li><li>2022 Q1b,c (RL-source derivation; half-wave RL numerical R = 25 Ω, L = 150 mH)</li><li>2023 Q2b (controlled half-wave RL: 120 V, R = 20 Ω, L = 0.04 H, α = 45°)</li><li>2022 Q1a(ii) (short note: freewheeling diode)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>i(ωt) = (V_m/Z)[sin(ωt − θ) + sinθ·e^(−ωt/ωτ)], Z = √(R² + (ωL)²), θ = tan⁻¹(ωL/R), ωτ = ωL/R</li><li>RL-source: i(ωt) = (V_m/Z)sin(ωt − θ) − V_dc/R + A·e^(−ωt/ωτ), from α to β</li><li>α = sin⁻¹(V_dc/V_m); P_dc = I_o V_dc; P_R = I_rms² R</li><li>Freewheeling: V_o = V_m/π; I_o = V_o/R</li><li>Controlled half-wave R: V_o = (V_m/2π)(1 + cosα)</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Work through each Hart section in order: RL (3.3), RL-source (3.5), freewheeling (3.7), controlled (3.9).</li><li>For each: draw the circuit and v_o, i_o waveforms, then write the current equation, then solve the example with the book closed.</li><li>Ex 3-5 came verbatim in 2024. Practise it twice: find α, then the current expression, then β (numerically), then I_o, I_rms, P_R, P_dc, pf.</li><li>Use a calculator table for β: try values until i(β) = 0.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Derive the current expression for a half-wave rectifier with RL load</li><li>Solve Ex 3-5 without the book</li><li>Why is a freewheeling diode used? Sketch v_o, i_D1, i_D2</li></ul>
+</section>
+<section class="lec pA">
+  <div class="lhead">
+    <div class="lid">L18</div>
+    <div class="ltitle">AC-DC Rectifier 03: Single-Phase Full-Wave Rectifiers (R, RL, Capacitor Filter)
+      <div class="lmeta">Part A &middot; ★★★ Must master &middot; 1 h &middot; Day 1 &middot; Hart ch.4: 4.1, 4.2</div>
+      <div class="lfile">Slide: Lecture 18 AC-DC Rectifier 03.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (7)</h4><ul class="boxes"><li>Bridge and centre-tapped full-wave rectifiers: circuits and operation</li><li>Resistive load: V_o = 2V_m/π, waveforms</li><li>RL load: Fourier series of output voltage, harmonic currents, average and rms current</li><li>Source current: harmonics, THD and power factor</li><li>Diode average and rms currents</li><li>Capacitor-filtered full-wave rectifier: ripple ΔV_o ≈ V_m/(2fRC)</li><li>Half-wave capacitor filter reference (Hart Ex 3-9): ΔV_o ≈ V_m/(fRC)</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Ex 4-1 (V_m = 100 V, R = 10 Ω, L = 10 mH): I_o = 6.37 A, ΔI_pp ≈ 6.8 A, P = 464 W, pf = 0.964, I_D,avg = 3.18 A, I_D,rms = 4.82 A</li><li>Ex 4-4 capacitor filter (120 V, R = 500 Ω, C = 100 µF): ΔV_o ≈ 28.3 V; C for 1% ripple ≈ 1667 µF</li><li>Draw v_s, v_o, i_o, i_D1,2, i_D3,4, i_s of a bridge with RL load with proper alignment</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2024 Q4c = Ex 4-1 verbatim (10 marks)</li><li>2020 TT-1 (waveforms of a full-wave bridge with RL load)</li><li>2021 Q2c (half-wave capacitor filter numerical: 120 V, 50 W, ripple 1.5 V)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>V_o = 2V_m/π</li><li>V_n = (2V_m/π)[1/(n−1) − 1/(n+1)], n = 2, 4, 6, …</li><li>I_n = V_n/Z_n, Z_n = |R + jnωL|</li><li>I_rms = √(I_o² + Σ(I_n/√2)²)</li><li>Full-wave C filter: ΔV_o ≈ V_m/(2fRC); half-wave: V_m/(fRC)</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Learn the Fourier method: V_o, then V_2, V_4, then I_2, I_4, then I_rms, then P.</li><li>Solve Ex 4-1 twice (it was asked verbatim in 2024). Then Ex 4-4.</li><li>Practise one &#x27;proper alignment&#x27; waveform drawing: all waveforms stacked on the same ωt axis.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Solve Ex 4-1 without the book</li><li>Derive the capacitor-filter ripple formula</li><li>Draw the bridge rectifier waveforms with RL load</li></ul>
+</section>
+<section class="lec pA">
+  <div class="lhead">
+    <div class="lid">L19</div>
+    <div class="ltitle">AC-DC Rectifier 04: Full-Wave Rectifier with Highly Inductive Load (Input PF)
+      <div class="lmeta">Part A &middot; ★★★ Must master &middot; 0.75 h &middot; Day 1 &middot; Rashid 3.5, Example 3.4</div>
+      <div class="lfile">Slide: Lecture 19 AC-DC Rectifier 04.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (5)</h4><ul class="boxes"><li>Single-phase bridge with a highly inductive load (DC motor): ripple-free I_a</li><li>Input current is a square wave of amplitude I_a</li><li>Fourier series of input current: i_s = Σ (4I_a/nπ) sin nωt (n odd)</li><li>Fundamental: I_s1 = 0.90I_a; rms I_s = I_a</li><li>Harmonic factor HF = 48.34%, displacement factor DF = 1, PF = 0.90</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Ex 3.4: derive the Fourier series of i_s, then HF = 48.34% and PF = 0.90 (lagging)</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2024 Q2a = Ex 3.4 verbatim (12 marks)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>I_s1 = 2√2 I_a/π = 0.9003I_a</li><li>HF = √((I_s/I_s1)² − 1) = 0.4834</li><li>PF = (I_s1/I_s)·cosφ = 0.90</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Short lecture but a 12-mark question. Learn the Fourier integral for the square wave: b_n = 4I_a/(nπ).</li><li>Write the full solution once, neatly, as you would in the exam.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Single-phase bridge supplying a DC motor with ripple-free current: find HF and input PF</li></ul>
+</section>
+<section class="lec pA">
+  <div class="lhead">
+    <div class="lid">L20</div>
+    <div class="ltitle">AC-DC Rectifier 05: Controlled Full-Wave Rectifiers and Single-Phase Full Converter
+      <div class="lmeta">Part A &middot; ★★★ Must master &middot; 1.25 h &middot; Day 2 &middot; Hart 4.3; Rashid 10.2</div>
+      <div class="lfile">Slide: Lecture 20 AC-DC Rectifier 05.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (6)</h4><ul class="boxes"><li>Controlled full-wave bridge (4 SCRs) with R load: V_o = (V_m/π)(1 + cosα)</li><li>Controlled bridge with RL load: discontinuous current (β &lt; π + α)</li><li>Continuous current: V_o = (2V_m/π)cosα; condition for continuous current</li><li>Single-phase full converter: rectification (α &lt; 90°) and inversion (α &gt; 90°) modes</li><li>Full converter input current Fourier series; HF, DF = cosα, PF</li><li>Waveforms: v_s, gate pulses, v_o, i_o, i_s</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Ex 4-6 (120 V, R = 20 Ω, α = 40°): V_o = 95.4 V, I_o = 4.77 A, P ≈ 673 W</li><li>Ex 4-7 discontinuous (120 V, R = 10 Ω, L = 20 mH, α = 60°): P ≈ 697 W</li><li>Ex 10.1 full converter (α = 60°): V_dc = 54.02 V, HF = 48.34%, DF = 0.5, PF = 0.45</li><li>Explain the continuous / discontinuous current condition for a controlled bridge with RL load</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2022 Q6c and 2023 Q2c = Ex 4-6 (asked twice)</li><li>2022 Q6a (continuous and discontinuous conditions, 8 marks)</li><li>2021 Q2d (controlled full-wave with V_dc source: find α for 1000 W and L)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>R load: V_o = (V_m/π)(1 + cosα); V_rms = (V_m/√2)√(1 − α/π + sin2α/2π)</li><li>Continuous: V_o = (2V_m/π)cosα</li><li>Continuous-current condition: α ≤ tan⁻¹(ωL/R) = θ (i.e. β ≥ π + α)</li><li>Full converter: I_s1 = 0.90I_a, HF = 48.34%, DF = cosα, PF = 0.9cosα</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Draw the controlled bridge waveforms for R load and for continuous RL load side by side, and see where the negative part of v_o comes from.</li><li>Solve Ex 4-6 (repeated twice) and Ex 10.1. Ex 10.1 is the partner of Ex 3.4 that was used in 2024.</li><li>Learn the continuous-current condition as a short paragraph with a sketch.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Solve Ex 4-6</li><li>For a controlled bridge with RL load, when is current continuous?</li><li>Solve Ex 10.1 part (b)</li></ul>
+</section>
+<section class="lec pA">
+  <div class="lhead">
+    <div class="lid">L21</div>
+    <div class="ltitle">AC-DC Rectifier 06: Multiphase Star Rectifiers
+      <div class="lmeta">Part A &middot; ★★ Important &middot; 0.5 h &middot; Day 2 &middot; Rashid (old ed.) 2-9</div>
+      <div class="lfile">Slide: Lecture 21 AC-DC Rectifier 06.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (5)</h4><ul class="boxes"><li>Why multiphase: higher V_dc, lower ripple, higher ripple frequency</li><li>q-phase star rectifier: each diode conducts for 2π/q</li><li>Average output voltage V_dc = V_m (q/π) sin(π/q)</li><li>RMS output voltage and Fourier series of output voltage (harmonics at nq)</li><li>Three-phase half-wave (q = 3) and six-phase cases</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Derive V_dc for a q-phase star rectifier; evaluate for q = 3 (0.827V_m) and q = 6 (0.955V_m)</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>Background for 3-phase rectifier questions (2023 Q3a)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>V_dc = V_m (q/π) sin(π/q)</li><li>V_rms = V_m √((q/2π)(π/q + ½ sin(2π/q)))</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Do the V_dc derivation once (integrate cos from −π/q to π/q). 30 minutes is enough.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Derive V_dc for a q-phase rectifier</li></ul>
+</section>
+<section class="lec pA">
+  <div class="lhead">
+    <div class="lid">L22</div>
+    <div class="ltitle">AC-DC Rectifier 07: Three-Phase Bridge Rectifier and Three-Phase Full Converter
+      <div class="lmeta">Part A &middot; ★★★ Must master &middot; 1.5 h &middot; Day 2 &middot; Rashid 3.7, 10.4</div>
+      <div class="lfile">Slide: Lecture 22 AC-DC Rectifier 07.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (9)</h4><ul class="boxes"><li>Three-phase uncontrolled bridge: circuit, diode conduction order (1-6), 6-pulse output</li><li>Waveforms: phase voltages, line voltages, output voltage, diode currents, line currents (proper alignment)</li><li>V_dc = 3√3 V_m/π = 1.654V_m (V_m = phase peak); V_rms = 1.6554V_m</li><li>12-pulse rectifier note (Y and Δ transformers in series)</li><li>Three-phase full converter: 6 SCRs, gate pulses 60° apart</li><li>Derivation of V_dc = (3√3 V_m/π)cosα (= 1.35V_LL cosα)</li><li>V_rms of full converter; thyristor average and rms currents</li><li>Input current Fourier series: HF = 31.08%, DF = cosα, PF = 0.955cosα</li><li>Applications: industrial drives up to 120 kW, HVDC</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Ex 3.7 three-phase bridge (I_dc = 60 A, V_dc = 280.7 V): η, FF, RF, TUF, PIV = 293.9 V</li><li>Derive V_dc(α) for the three-phase full converter with waveforms (2024 Q2b, 13 marks)</li><li>Ex 10.4 (208 V, R = 10 Ω, 50% of max): α = 60°, I_dc = 14.05 A, I_rms = 15.93 A, I_A = 4.68 A, I_R = 9.2 A, η = 77.8%, TUF = 0.421, PF = 0.542</li><li>Ex 10.5 input PF: HF = 31.08%, DF = cosα, PF = 0.955cosα; at α = 60°, PF = 0.478</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2024 Q2b (derive V_dc(α), 13 marks) and 2024 Q3c = Ex 10.4 verbatim (12 marks)</li><li>2023 Q3a (3-phase uncontrolled waveforms), 2023 Q3d (3-phase controlled, find α for 50 A, harmonics)</li><li>2021 Q3b (3-phase converter as inverter, 300 V source)</li><li>2020 TT-2 (3-phase rectifier 480 V, RL load: rms currents)</li><li>2023 Q3c (advantages of HVDC)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>Uncontrolled: V_dc = 3√3V_m/π = 1.654V_m = 1.35V_LL</li><li>Full converter: V_dc = (3√3V_m/π)cosα</li><li>V_rms = √3V_m√(½ + (3√3/4π)cos2α)</li><li>I_A = I_dc/3; I_R = I_rms√(2/6); I_s = I_rms√(4/6)</li><li>Input: HF = 31.08%, DF = cosα, PF = 0.955cosα</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Draw the 3-phase voltage grid (v_an, v_bn, v_cn and the 6 line voltages) until you can do it quickly. Every 3-phase question needs it.</li><li>Learn the derivation: output follows the line voltage v_ab from π/6 + α to π/2 + α, so V_dc = (3/π)∫√3V_m sin(ωt + π/6) dωt.</li><li>Solve Ex 10.4 twice; it came verbatim in 2024. Then Ex 10.5.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Derive V_dc(α) for a three-phase full converter with gate-pulse and output waveforms</li><li>Solve Ex 10.4 without the book</li><li>Draw the 3-phase bridge rectifier waveforms with proper alignment</li></ul>
+</section>
+<div class="pb"></div>
+<div class="partbanner bB">PART B: DC-DC (L09 to L15), Resonant (L23 to L24), Inverters (L25 to L30), AC-AC and Cycloconverter (L31 to L34), Solar (L35)</div>
+
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L09</div>
+    <div class="ltitle">DC-DC Converter 01: Linear Regulator, Basic Switching Converter, Buck Analysis
+      <div class="lmeta">Part B &middot; ★★★ Must master &middot; 1 h &middot; Day 2 &middot; Hart 6.1 to 6.3</div>
+      <div class="lfile">Slide: Lecture 09 DC-DC Converter 01.pdf + Lecture 09 Handout.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (9)</h4><ul class="boxes"><li>Linear voltage regulator: circuit (transistor in active region), efficiency ≈ V_o/V_s</li><li>Drawback of linear regulator (high loss when V_s ≫ V_o) and how switching solves it</li><li>Basic switching converter: switch + diode + LC filter, duty ratio D</li><li>Buck converter circuit; switch-closed and switch-open equivalent circuits</li><li>Inductor voltage/current analysis; volt-second balance gives V_o = DV_s</li><li>Inductor current: average I_L = V_o/R; I_max, I_min; Δi_L</li><li>Minimum L for continuous current: L_min = (1 − D)R/(2f)</li><li>Output voltage ripple ΔV_o/V_o = (1 − D)/(8LCf²)</li><li>Handout: fill-in table of the buck equivalent circuits</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Derive V_o = DV_s for the buck converter from the ON/OFF equivalent circuits</li><li>Draw v_L, i_L, i_C, i_D waveforms for the buck converter</li><li>Derive the relation between inductor current and diode current from the waveforms (2023 Q4b)</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2023 Q4a (linear regulator, drawback, solution)</li><li>2024 Q3a (DC-DC converters vs switching-mode regulators)</li><li>2023 Q4b (buck waveforms and relation between i_L and i_D)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>V_o = DV_s</li><li>Δi_L = (V_s − V_o)DT/L = V_o(1 − D)/(Lf)</li><li>I_max,min = V_o/R ± Δi_L/2</li><li>L_min = (1 − D)R/(2f)</li><li>ΔV_o/V_o = (1 − D)/(8LCf²)</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Fill in the handout yourself. It is the derivation skeleton.</li><li>Learn the 5-step method you will reuse for every converter: (1) ON circuit, v_L; (2) OFF circuit, v_L; (3) volt-second balance gives V_o; (4) power balance or KCL gives I_L; (5) Δi_L and capacitor charge ΔQ give the ripple.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Draw a linear regulator; give its drawback and how to overcome it</li><li>Derive V_o, I_max, I_min, L_min and the ripple for a buck converter</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L10</div>
+    <div class="ltitle">DC-DC Converter 02: Buck Converter Example and Ripple
+      <div class="lmeta">Part B &middot; ★★★ Must master &middot; 0.5 h &middot; Day 2 &middot; Hart 6.3, Example 6-1</div>
+      <div class="lfile">Slide: Lecture 10 DC-DC Converter 02.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (3)</h4><ul class="boxes"><li>Output voltage ripple derivation (capacitor charge ΔQ = TΔi_L/8)</li><li>Example 6-1: buck converter analysis</li><li>Design notes: higher f gives smaller L and C</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Ex 6-1 (V_s = 50 V, D = 0.4, L = 400 µH, C = 100 µF, f = 20 kHz, R = 20 Ω): V_o = 20 V, I_L = 1 A, I_max = 1.75 A, I_min = 0.25 A, ΔV_o/V_o = 0.47%</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2020 TT-2 Q2 = Ex 6-1 verbatim</li><li>2022 Q2c (buck design 5 V to 3.3 V, 1 to 2 A; the method is the same)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>ΔQ = (T/8)Δi_L</li><li>ΔV_o = ΔQ/C</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Solve Ex 6-1 with the book closed and check every number. Then attempt the 2022 buck design question using the same steps.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Solve Ex 6-1 without the book</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L11</div>
+    <div class="ltitle">DC-DC Converter 03: Boost Converter
+      <div class="lmeta">Part B &middot; ★★★ Must master &middot; 0.75 h &middot; Day 2 &middot; Hart 6.5</div>
+      <div class="lfile">Slide: Lecture 11 DC-DC Converter 03.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (8)</h4><ul class="boxes"><li>Boost circuit; switch-closed and switch-open equivalent circuits</li><li>V_o = V_s/(1 − D) from volt-second balance</li><li>Average inductor current I_L = V_s/((1 − D)²R)</li><li>I_max, I_min, Δi_L = V_sDT/L</li><li>Minimum L: L_min = D(1 − D)²R/(2f)</li><li>Output ripple ΔV_o/V_o = D/(RCf)</li><li>Waveforms: i_L, i_D, i_C, v_o (proper alignment)</li><li>Example 6-4: boost converter design 1 (12 V to 30 V, 50 Ω, 1% ripple)</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Full boost derivation: equivalent circuits, waveforms, V_o/V_s, I_L, i_L vs i_D relation (10 marks in 2021)</li><li>Ex 6-4 design: D = 0.6, choose f, L &gt; L_min, C from ΔV_o/V_o</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2021 Q4a (full boost derivation, 10 marks)</li><li>2023 Q4c (boost: duty, L_min, C_min)</li><li>2020 TT-2 Q1 (boost circuit and waveforms)</li><li>2019 TT-2 (boost numerical)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>V_o = V_s/(1 − D)</li><li>I_L = V_s/((1 − D)²R)</li><li>Δi_L = V_sDT/L</li><li>L_min = D(1 − D)²R/(2f)</li><li>ΔV_o/V_o = D/(RCf)</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Repeat the 5-step method from L09 for the boost converter. Then do the 2023 Q4c numerical (25 W at 15 V from 6 V) as practice.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Derive V_o/V_s for a boost converter with equivalent circuits and waveforms</li><li>Solve Ex 6-4</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L12</div>
+    <div class="ltitle">DC-DC Converter 04: Boost Design 2, Inductor Resistance, Capacitor ESR
+      <div class="lmeta">Part B &middot; ★★ Important &middot; 0.75 h &middot; Day 2 &middot; Hart 6.5</div>
+      <div class="lfile">Slide: Lecture 12 DC-DC Converter 04.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (5)</h4><ul class="boxes"><li>Example 6-4 continued (component selection)</li><li>Example 6-5: boost design 2 (8 V, 1 A out; 2.7 to 4.2 V in; Δi_L ≤ 40%)</li><li>Effect of capacitor ESR on output ripple: ΔV_o,ESR = Δi_C·r_C</li><li>Effect of inductor resistance on boost output: V_o = (V_s/(1 − D))·(1/(1 + r_L/(R(1 − D)²)))</li><li>Efficiency drop and maximum achievable gain because of r_L</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Ex 6-5: design for the worst-case input</li><li>Explain how ESR and inductor resistance affect DC-DC output (2022 Q2b, 7 marks)</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2022 Q2b (capacitor and inductor resistance effects, 7 marks)</li><li>2022 Q2c (maximum ESR of capacitor)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>ΔV_o,ESR = Δi_C r_C</li><li>Boost with r_L: V_o = V_s/(1 − D) × 1/(1 + r_L/(R(1 − D)²))</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Learn the ESR and r_L paragraphs with one formula each; sketch V_o/V_s vs D for ideal and with r_L (the gain curve bends down). Do Ex 6-5 once.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>How do ESR and inductor resistance affect the DC-DC converter output?</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L13</div>
+    <div class="ltitle">DC-DC Converter 05: Buck-Boost Converter
+      <div class="lmeta">Part B &middot; ★★★ Must master &middot; 0.75 h &middot; Day 2 &middot; Hart 6.6</div>
+      <div class="lfile">Slide: Lecture 13 DC-DC Converter 05.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (6)</h4><ul class="boxes"><li>Buck-boost circuit; ON and OFF equivalent circuits; output polarity is inverted</li><li>V_o = −V_s D/(1 − D)</li><li>I_L = V_sD/(R(1 − D)²); I_max, I_min; Δi_L = V_sDT/L</li><li>L_min = (1 − D)²R/(2f)</li><li>Output ripple ΔV_o/V_o = D/(RCf); ESR effect</li><li>Waveforms: i_L, i_D, i_C, v_o</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Ex 6-6 (24 V, D = 0.4, R = 5 Ω, L = 20 µH, C = 80 µF, 100 kHz): V_o = −16 V, I_L = 5.33 A, I_max = 7.73 A, I_min = 2.93 A, ΔV_o/V_o = 1%</li><li>Derive V_o, I_L, L_min and ΔV_o for a buck-boost (2022 Q2a, 8 marks)</li><li>2021 Q4b (24 V to −36 V, 10 Ω, 100 kHz: L for I_min = 40% of average, C for 0.5% ripple)</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2024 Q5b = Ex 6-6 verbatim</li><li>2022 Q2a (buck-boost derivation)</li><li>2021 Q4b (buck-boost design)</li><li>2019 TT-2 (buck-boost circuit and waveforms)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>V_o = −V_sD/(1 − D)</li><li>I_L = V_sD/(R(1 − D)²)</li><li>L_min = (1 − D)²R/(2f)</li><li>ΔV_o/V_o = D/(RCf)</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Same 5-step method. Solve Ex 6-6 and 2021 Q4b. Note the inverted output in every waveform.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Derive the buck-boost output voltage and minimum inductance</li><li>Solve Ex 6-6 without the book</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L14</div>
+    <div class="ltitle">DC-DC Converter 06: Ćuk Converter
+      <div class="lmeta">Part B &middot; ★★ Important &middot; 0.75 h &middot; Day 2 &middot; Hart 6.7</div>
+      <div class="lfile">Slide: Lecture 14 DC-DC Converter 06.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (7)</h4><ul class="boxes"><li>Ćuk circuit: energy transfer through C1; output inverted</li><li>V_o = −V_s D/(1 − D) (from average capacitor voltage V_C1 = V_s − V_o)</li><li>Continuous input and output currents (low ripple, low EMI)</li><li>Inductor ripples Δi_L1 = V_sDT/L1, Δi_L2 = V_sDT/L2</li><li>C1 ripple Δv_C1 = V_oD/(RC1f); output ripple ΔV_o/V_o = (1 − D)/(8L2C2f²)</li><li>L_min for continuous current in L1 and L2</li><li>Example 6-7: Ćuk design (12 V to 18 V, 40 W)</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Ex 6-7: choose D = 0.6, f, L1, L2, C1, C2</li><li>Write the advantages of Ćuk over buck-boost (2024 Q6b, 6 marks)</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2024 Q6b (advantage of Ćuk over buck-boost)</li><li>2023 Q4d (SEPIC vs Ćuk)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>V_o = −V_sD/(1 − D)</li><li>Δv_C1 = V_oD/(RC1f)</li><li>ΔV_o/V_o = (1 − D)/(8L2C2f²)</li><li>L1,min = (1 − D)²R/(2Df); L2,min = (1 − D)R/(2f)</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Learn the circuit and the &#x27;why&#x27;: both inductors in series with input and output make both currents continuous. Do Ex 6-7 once.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Draw a Ćuk converter. What is its advantage over a buck-boost?</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L15</div>
+    <div class="ltitle">DC-DC Converter 07: SEPIC and Interleaved Converters
+      <div class="lmeta">Part B &middot; ★★★ Must master &middot; 0.75 h &middot; Day 2 &middot; Hart 6.8, 6.9</div>
+      <div class="lfile">Slide: Lecture 15 DC-DC Converter 07.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (7)</h4><ul class="boxes"><li>SEPIC circuit (L1, C1, L2, switch, diode, C2); output not inverted</li><li>V_o = V_s D/(1 − D); V_C1 = V_s</li><li>Inductor currents: I_L1 = I_s, I_L2 = I_o; ripples Δi_L1 = Δi_L2 = V_sDT/L</li><li>Capacitor ripples Δv_C1 = V_oD/(RC1f), ΔV_o/V_o = D/(RC2f)</li><li>Example 6-8: SEPIC analysis</li><li>SEPIC vs buck-boost and vs Ćuk</li><li>Interleaved converters: phase-shifted parallel stages, reduced ripple</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Ex 6-8 (9 V, D = 0.4, 100 kHz, L = 90 µH, C = 80 µF, I_o = 2 A): V_o = 6 V, I_L1 = 1.33 A, I_L2 = 2 A, Δi_L = 0.4 A, Δv_C = 0.1 V</li><li>Table: SEPIC vs Ćuk vs buck-boost (polarity, input current, ground, components)</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2021 Q4d (draw SEPIC, advantage over buck-boost)</li><li>2023 Q4d (SEPIC vs Ćuk)</li><li>2024 Q5a (what makes SEPIC superior to buck-boost, 6 marks)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>V_o = V_sD/(1 − D)</li><li>Δi_L1 = Δi_L2 = V_sDT/L</li><li>ΔV_o/V_o = D/(RC2f)</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Learn the circuit and a 4-row comparison table. SEPIC: non-inverting, continuous input current, common ground, works as buck or boost.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>What makes SEPIC superior to buck-boost?</li><li>Solve Ex 6-8</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L23</div>
+    <div class="ltitle">Resonant Converter 01: Zero-Current Switching (ZCS)
+      <div class="lmeta">Part B &middot; ★★ Important &middot; 0.75 h &middot; Day 3 &middot; Hart 9.1, 9.2</div>
+      <div class="lfile">Slide: Lecture 23 Resonant Converter 01.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (9)</h4><ul class="boxes"><li>Why resonant converters: switching losses rise with frequency; switch at zero current or voltage</li><li>ZCS resonant switch converter circuit (L_r, C_r, switch, diode, L_o, C_o)</li><li>Mode 1 (0 to t1): i_L rises linearly, t1 = I_oL_r/V_s</li><li>Mode 2 (t1 to t2): resonance, i_L = I_o + (V_s/Z_0)sin ω_0(t − t1), switch current returns to zero</li><li>Mode 3 (t2 to t3): C_r discharges at constant I_o</li><li>Mode 4 (t3 to T): diode freewheels</li><li>Condition for ZCS: I_o &lt; V_s/Z_0; Z_0 = √(L_r/C_r), ω_0 = 1/√(L_rC_r)</li><li>Output voltage V_o = V_s f_s [t1/2 + (t2 − t1) + (t3 − t2)]; V_o proportional to f_s</li><li>Example 9-1</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Ex 9-1 (V_s = 12 V, C_r = 0.1 µF, L_r = 10 µH, I_o = 1 A): Z_0 = 10 Ω, peak i_L = 2.2 A, find V_o and f_s,max</li><li>Draw the four-mode waveforms (i_Lr, v_Cr)</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2021 Q6d (ZVS, with equations provided)</li><li>Resonant topic: 2021, 2022, 2024</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>ω_0 = 1/√(L_rC_r), Z_0 = √(L_r/C_r)</li><li>t1 = I_oL_r/V_s</li><li>I_L,max = I_o + V_s/Z_0</li><li>ZCS needs I_o &lt; V_s/Z_0</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Learn the circuit and 4 modes as a table (interval, what conducts, equation). In exams the long equations are usually given; you must know how to use them.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Explain the operation of a ZCS resonant converter with waveforms</li><li>Solve Ex 9-1</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L24</div>
+    <div class="ltitle">Resonant Converter 02: Zero-Voltage Switching (ZVS) and Series Resonant Inverter
+      <div class="lmeta">Part B &middot; ★★ Important &middot; 0.75 h &middot; Day 3 &middot; Hart 9.3, 9.4</div>
+      <div class="lfile">Slide: Lecture 24 Resonant Converter 02.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (8)</h4><ul class="boxes"><li>ZVS converter circuit (C_r across the switch, L_r in series)</li><li>Mode 1: switch opens, C_r charges linearly, t1 = V_sC_r/I_o</li><li>Mode 2: resonance, v_C = V_s + I_oZ_0 sin ω_0(t − t1); requires I_oZ_0 &gt; V_s</li><li>Mode 3: diode across switch conducts; switch turns on at zero voltage</li><li>Mode 4: switch on</li><li>Output voltage V_o = V_s[1 − f_s(t3 − t1/2)]</li><li>Example 9-2 (V_s = 20 V, L_r = 1 µH, C_r = 0.047 µF, I_o = 5 A): f_s for V_o = 10 V</li><li>Series resonant inverter introduction</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Ex 9-2</li><li>2021 Q6d (V_s = 5 V, I_o = 3 A, L_r = 1 µH, C_r = 0.01 µF: V_o at 500 kHz; f_s for V_o = 2.5 V)</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2021 Q6d (ZVS numerical, 6 marks)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>t1 = V_sC_r/I_o</li><li>t2 = (1/ω_0)sin⁻¹(−V_s/(I_oZ_0)) + t1</li><li>V_o = V_s[1 − f_s(t3 − t1/2)]</li><li>ZVS needs I_oZ_0 &gt; V_s</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Same table method as ZCS. Do the 2021 Q6d numerical since the equations were given in the paper.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Explain ZVS operation and its condition</li><li>Solve 2021 Q6d</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L25</div>
+    <div class="ltitle">Inverter 01: Half-Bridge Inverter, Fourier Analysis, Performance Parameters
+      <div class="lmeta">Part B &middot; ★★★ Must master &middot; 1.25 h &middot; Day 3 &middot; Rashid 6.4 (class notes)</div>
+      <div class="lfile">Slide: Lecture 25 Inverter 01.pdf (handwritten notes)</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (12)</h4><ul class="boxes"><li>Inverter: DC to AC; VSI, CSI, variable DC-link inverter</li><li>Half-bridge: two switches, two capacitors (V_dc/2 each); output ±V_dc/2</li><li>Switch states and output waveform; V_o,rms = V_dc/2</li><li>Fourier series: b_n = 2V_dc/(nπ) for odd n; v_o = Σ (2V_dc/nπ) sin nωt</li><li>Fundamental: V_o1 = 2V_dc/(√2π) = 0.45V_dc</li><li>Harmonic factor HF_n = V_on/V_o1</li><li>THD = (1/V_o1)√(V_o² − V_o1²) = 48.34%</li><li>Distortion factor DF = (1/V_o1)√(Σ(V_on/n²)²); lowest-order harmonic (LOH)</li><li>Example: V_dc = 48 V, R = 2.4 Ω</li><li>Gating sequence; gate isolation (optocoupler, pulse transformer)</li><li>Feedback diodes for reactive loads</li><li>RL load: i_o = Σ (2V_dc/(nπZ_n)) sin(nωt − θ_n); P = I_o1,rms²R (approximate)</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Derive the Fourier series of the half-bridge output</li><li>Class example (V_dc = 48 V, R = 2.4 Ω): V_o1 = 21.6 V, P = 240 W, I_p = 10 A, I_avg(switch) = 5 A, V_BR = 48 V, I_s = 5 A, THD = 48.34%, DF = 3.8%, HF_3 = 33.3%, LOH = 3rd (7.2 V)</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2022 Q5b (principle of a square-wave inverter, 8 marks)</li><li>2023 Q5d (THD of a square-wave inverter)</li><li>2022 Q1a(i) (short note on THD)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>V_o,rms = V_dc/2</li><li>v_o = Σ (2V_dc/nπ) sin nωt (n odd)</li><li>V_o1 = 0.45V_dc</li><li>THD = √(V_o² − V_o1²)/V_o1</li><li>DF = (1/V_o1)√Σ(V_on/n²)²</li><li>HF_n = V_on/V_o1</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>These are handwritten notes, so read them slowly and rewrite each derivation neatly in your own copy.</li><li>Learn the 4 definitions (HF, THD, DF, LOH) word for word.</li><li>Solve the 48 V, 2.4 Ω example completely. Inverters were barely asked in 2024 but were your batch&#x27;s Assessment #5 and #6 topic, so expect a full question here.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Derive the Fourier series of a half-bridge inverter output</li><li>Define THD, DF, HF and LOH</li><li>Solve the 48 V, 2.4 Ω example</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L26</div>
+    <div class="ltitle">Inverter 02: Single-Phase Full-Bridge Inverter (R, L and RL loads)
+      <div class="lmeta">Part B &middot; ★★★ Must master &middot; 1 h &middot; Day 3 &middot; Rashid 6.5 / Hart 8.2 to 8.4 (class notes)</div>
+      <div class="lfile">Slide: Lecture 26 Inverter 02.pdf (handwritten notes)</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (8)</h4><ul class="boxes"><li>Full-bridge: 4 switches; S1, S2 on gives +V_dc; S3, S4 on gives −V_dc</li><li>V_o,rms = V_dc</li><li>Fourier series: v_o = Σ (4V_dc/nπ) sin nωt (n odd)</li><li>V_o1 = 4V_dc/(√2π) = 0.90V_dc; HF, DF, THD = 48.34%</li><li>Inductive load: conduction sequence of switches and feedback diodes (D1 to D4)</li><li>RL load current: i_o = Σ (4V_dc/(nπZ_n)) sin(nωt − θ_n), Z_n = √(R² + (nωL)²)</li><li>Power P = Σ I_n,rms² R; DC source current I_s = P/V_dc</li><li>Amplitude and harmonic control (quasi-square wave with dead angle)</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Derive the full-bridge Fourier series and V_o1 = 0.90V_dc</li><li>RL-load square-wave inverter (V_dc = 100 V, R = 10 Ω, L = 25 mH, 60 Hz): Fourier current, P, average source current</li><li>Show the feedback-diode conduction intervals for an inductive load</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2021 Q6a and 2022 Q5c (full-bridge square wave, RL load: same numbers both years)</li><li>2022 Q5d (how to control amplitude and harmonics, 7 marks)</li><li>2021 Q6b (switching diagram to reduce 3rd harmonic)</li><li>2019 TT-2 (fifth-harmonic elimination; α for 90 V fundamental)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>v_o = Σ (4V_dc/nπ) sin nωt</li><li>V_o1,rms = 0.90V_dc</li><li>I_n = V_n/√(R² + (nωL)²)</li><li>P = Σ (I_n,max/√2)²R</li><li>I_s = P/V_dc</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Write the Fourier derivation once for full-bridge (it is the half-bridge result with V_dc/2 replaced by V_dc).</li><li>Solve the 100 V, 10 Ω, 25 mH problem with the Fourier method: compute I_1, I_3, I_5, I_7 and add the powers. It appeared twice.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Derive the output Fourier series of a full-bridge inverter</li><li>Solve the 100 V, 10 Ω, 25 mH RL-load problem</li><li>How are amplitude and harmonics controlled in an inverter?</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L27</div>
+    <div class="ltitle">Problem Solving Class 01 = Assessment #5: Quasi-Square-Wave Full-Bridge Inverter
+      <div class="lmeta">Part B &middot; ★★★ Must master &middot; 0.5 h &middot; Day 3 &middot; Your batch&#x27;s Assessment #5</div>
+      <div class="lfile">Slide: Lecture 27 Problem Solving Class 01.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (5)</h4><ul class="boxes"><li>Q1, Q2 conduct from δ to π − δ; Q3, Q4 from π + δ to 2π − δ (quasi-square wave)</li><li>RMS output: V_o,rms = V_dc√((π − 2δ)/π)</li><li>Fourier series: V_n = (4V_dc/nπ)cos(nδ), n odd</li><li>Fundamental rms and THD as functions of δ</li><li>δ = 30° removes the 3rd harmonic (harmonic elimination)</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>δ = π/6: V_o,rms = 0.8165V_dc, V_o1,rms = 0.7797V_dc, THD = 31.1%</li><li>Sketch the quasi-square output waveform with δ marked</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>Your own Assessment #5 (very likely to return as a final question)</li><li>2022 Q5d, 2021 Q6b, 2019 TT-2 (amplitude and harmonic control)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>V_o,rms = V_dc√(1 − 2δ/π)</li><li>V_n = (4V_dc/nπ)cos nδ</li><li>THD = √(V_o² − V_o1²)/V_o1</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Solve the assessment again from scratch under a 15-minute timer.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Solve Assessment #5 (both questions) in 15 minutes</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L28</div>
+    <div class="ltitle">Inverter 03: Three-Phase Inverter (180° conduction)
+      <div class="lmeta">Part B &middot; ★★★ Must master &middot; 1.25 h &middot; Day 3 &middot; Rashid 6.8 (class notes)</div>
+      <div class="lfile">Slide: Lecture 28 Inverter 03.pdf (handwritten notes)</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (9)</h4><ul class="boxes"><li>Three-phase bridge: six switches S1 to S6, gated 60° apart, each conducts 180°</li><li>Gate sequence table; three switches on at a time (e.g. 5, 6, 1 then 6, 1, 2 …)</li><li>Mode equivalent circuits with Y-connected R load: v_an = V_dc/3 or 2V_dc/3</li><li>Phase voltage six-step waveform; line voltage quasi-square (120° wide)</li><li>Line rms: V_L = √(2/3)V_dc = 0.8165V_dc</li><li>Line Fourier series: v_ab = Σ (4V_dc/nπ)cos(nπ/6) sin n(ωt + π/6); triplen harmonics absent</li><li>V_L1 = 0.7797V_dc; phase rms V_p = V_L/√3 = 0.4714V_dc</li><li>Phase Fourier series v_an (shifted by −π/6)</li><li>RL load current per harmonic</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Fill the 180° gating table and draw v_ab, v_bc, v_ca, v_an</li><li>Derive V_L,rms = 0.8165V_dc and the Fourier series of v_ab</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>Not asked 2021 to 2024 in finals; your batch had the 120° version as Assessment #6, so the 180° version is the natural final question</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>V_L = 0.8165V_dc</li><li>V_L1 = 0.7797V_dc</li><li>V_p = 0.4714V_dc</li><li>v_ab = Σ (4V_dc/nπ)cos(nπ/6) sin n(ωt + π/6)</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Draw the gate table and waveform grid by yourself twice (copying the notes). Then do the rms integral: V_L² = (1/π)∫ from 0 to 2π/3 of V_dc² d(ωt).</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Draw the 180° gating sequence and phase/line voltages of a 3-phase inverter</li><li>Derive V_L,rms and the Fourier series of the line voltage</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L29</div>
+    <div class="ltitle">Inverter 04: Multilevel Inverters (Cascaded H-Bridge)
+      <div class="lmeta">Part B &middot; ★★★ Must master &middot; 1 h &middot; Day 3 &middot; Class notes</div>
+      <div class="lfile">Slide: Lecture 29 Inverter 04.pdf (handwritten notes)</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (8)</h4><ul class="boxes"><li>Why multilevel: more sinusoidal output, lower THD, lower dv/dt, higher voltage with low-rated switches</li><li>Three-level H-bridge: +V_dc, 0, −V_dc and the switch pairs for each</li><li>Five-level cascaded inverter (2 H-bridges): +2V_dc, +V_dc, 0, −V_dc, −2V_dc</li><li>Seven-level cascaded inverter (3 H-bridges, 12 switches): switch combinations for each level</li><li>Levels = 2s + 1 (s = number of separate DC sources / H-bridges)</li><li>Staircase waveform and its rms: V_o,rms = √2V_dc (7-level example)</li><li>Fundamental V_o1 ≈ 1.35V_dc (rms) and THD ≈ 31.5% (vs 48.34% for 2-level)</li><li>Pattern swapping: equal power sharing among sources</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Draw a 5-level cascaded inverter with its switching table and output waveform (2024 Q5c)</li><li>Draw the 7-level circuit and list switches for each level</li><li>Explain why pattern swapping is important (2023 Q5b)</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2024 Q5c (design a 5-level inverter, 5 marks)</li><li>2023 Q5b (3-level cascade multi-source, why pattern swapping)</li><li>2021 Q5b (four-source cascade, equalisation of source power)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>Levels = 2s + 1</li><li>THD falls as levels increase</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Draw one H-bridge and its 3 levels; then stack two (5-level) and three (7-level). Write the switching table. Learn the 3-line pattern-swapping explanation.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Design a 5-level inverter and explain its operation</li><li>Why is pattern swapping needed in a multi-source inverter?</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L30</div>
+    <div class="ltitle">Problem Solving Class 02 = Assessment #6: Three-Phase Inverter, 120° Conduction
+      <div class="lmeta">Part B &middot; ★★★ Must master &middot; 0.5 h &middot; Day 3 &middot; Your batch&#x27;s Assessment #6</div>
+      <div class="lfile">Slide: Lecture 30 Problem Solving Class 02.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (4)</h4><ul class="boxes"><li>120° conduction: only two switches on at a time; each phase is +, floating, −, floating</li><li>Phase voltage: ±V_dc/2 for 120°, 0 for 60°; V_p,rms = V_dc/√6 = 0.408V_dc</li><li>Line voltage levels V_dc/2, V_dc, V_dc/2; V_L,rms = V_dc/√2 = 0.7071V_dc</li><li>Comparison with 180° mode</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Derive V_L,rms = V_dc/√2 for the 120° mode (with waveform)</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>Your own Assessment #6 (10 marks)</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>V_p = 0.4082V_dc</li><li>V_L = 0.7071V_dc</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Draw the 120° gate table, then v_an, then v_ab, then integrate. 15-minute timed attempt.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Derive the line-to-line rms voltage of a 3-phase inverter in 120° mode</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L31_32</div>
+    <div class="ltitle">AC-AC Converter 01-02: Single-Phase and Three-Phase AC Voltage Controllers
+      <div class="lmeta">Part B &middot; ★★★ Must master &middot; 1.5 h &middot; Day 4 &middot; Rashid ch.11 (class notes)</div>
+      <div class="lfile">Slide: Lecture 31_32 AC-AC Converter 01_02.pdf (handwritten notes)</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (11)</h4><ul class="boxes"><li>AC-AC conversion: change rms voltage (AC voltage controller) or frequency (cycloconverter)</li><li>Single-phase full-wave controller: two antiparallel SCRs (or a TRIAC) with R load</li><li>Output waveform for delay α; derivation V_o = (V_m/√2)√((1/π)(π − α + sin2α/2))</li><li>Input power factor PF = P/(V_s I_s) = V_o/V_s</li><li>Thyristor average and rms current derivations</li><li>Class example: 120 V, 60 Hz, R = 10 Ω, α = 90°</li><li>Three-phase bidirectional (6 SCRs) controller with Y-connected R load</li><li>Gate pulses for α = 60° on the 3-phase grid; modes with 3 or 2 SCRs conducting</li><li>Phase output v_an segments: v_an, v_ab/2, v_ac/2, 0 for each 60° interval</li><li>RMS of v_an by piecewise integration</li><li>Applications: heating, lighting, soft starters, induction motor speed control</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Class example (120 V, R = 10 Ω, α = 90°): V_o = 84.85 V, P = 720 W, PF = 0.707, I_T,avg = 2.7 A, I_T,rms = 6 A</li><li>Derive V_o,rms for the single-phase controller</li><li>Draw the 3-phase controller circuit and the v_an waveform for α = 60°</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2024 Q5d (single-phase controller α = 90°, 120 V: class example verbatim, 8 marks)</li><li>2024 Q6a (3-phase bidirectional controller α = 60° waveforms, 8 marks)</li><li>2022 Q5a (briefly explain AC voltage controllers)</li><li>Your Assessment #7</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>V_o = V_s√(1 − α/π + sin2α/2π)</li><li>PF = V_o/V_s</li><li>I_T,avg = (√2V_s/2πR)(1 + cosα)</li><li>I_T,rms = I_o/√2</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>The 2024 paper used both class-note examples from this lecture. Treat every drawing here as an exam question.</li><li>Do the single-phase derivation and the α = 90° example, then copy the α = 60° 3-phase drawing until you can draw it from memory.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Derive the rms output of a single-phase AC voltage controller and solve for α = 90°</li><li>Draw the 3-phase bidirectional controller and v_an for α = 60°</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L33</div>
+    <div class="ltitle">AC-AC Converter 03: Cycloconverters
+      <div class="lmeta">Part B &middot; ★★★ Must master &middot; 0.75 h &middot; Day 4 &middot; Rashid 11.x (class notes)</div>
+      <div class="lfile">Slide: Lecture 33 AC-AC Converter 03.pdf (handwritten notes)</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (7)</h4><ul class="boxes"><li>Cycloconverter: direct AC to AC at a lower frequency (no DC link); vs rectifier + inverter</li><li>Single-phase cycloconverter: P-converter and N-converter (back-to-back bridges)</li><li>Operation for f_o = f_s/3 (T_o = 3T_s): P-converter on for T_o/2, N-converter for T_o/2</li><li>Operation for f_o = f_s/4 and f_o = f_s/5</li><li>Three-phase to single-phase cycloconverter (two 3-phase full converters), f_o = 12 Hz from 60 Hz</li><li>Three-phase cycloconverter (three such groups)</li><li>Applications: low-speed high-power AC drives (rolling mills, cement kilns, ship propulsion, mine hoists)</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Draw the single-phase cycloconverter and the output waveform for f_o = f_s/3</li><li>Write definition + 4 applications</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>Asked every year: 2021 Q3a, 2022 Q3a,b, 2023 Q6b, 2024 Q4a</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>f_o = f_s/k; T_o = kT_s</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Guaranteed short question. Learn the definition, circuit, f_s/3 waveform and applications. 45 minutes.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>What is a cycloconverter? Explain a single-phase cycloconverter with waveforms; list applications</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L34</div>
+    <div class="ltitle">Problem Solving Class 03 = Assessment #7: Single-Phase AC Voltage Controller
+      <div class="lmeta">Part B &middot; ★★★ Must master &middot; 0.25 h &middot; Day 4 &middot; Your batch&#x27;s Assessment #7</div>
+      <div class="lfile">Slide: Lecture 34 Problem Solving Class 03.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (3)</h4><ul class="boxes"><li>Single-phase full-wave controller, R = 10 Ω, 120 V, 60 Hz, asymmetric delay (T1 at 80°, T2 at 180° + 100°)</li><li>RMS output with unequal delay angles</li><li>Input power factor</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>V_o² = (V_m²/4π)[(π − α₁ + ½ sin2α₁) + (π − α₂ + ½ sin2α₂)]: V_o = 84.85 V, PF = 0.707</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>Your own Assessment #7</li></ul>
+      <h4>Formula sheet</h4><ul class="mono"><li>Asymmetric: average the two half-cycle integrals</li></ul>
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Redo it in 10 minutes after L31_32.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Solve Assessment #7 in 10 minutes</li></ul>
+</section>
+<section class="lec pB">
+  <div class="lhead">
+    <div class="lid">L35</div>
+    <div class="ltitle">Solar PV System and Course Wrap-Up
+      <div class="lmeta">Part B &middot; ★★ Important &middot; 0.5 h &middot; Day 4 &middot; Slides + video</div>
+      <div class="lfile">Slide: Lecture 35 Solar PV System.pdf</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div><h4>Topics in this lecture (5)</h4><ul class="boxes"><li>How a solar system works (PV effect, panels, DC output)</li><li>Stand-alone PV block diagram: PV array, charge controller / MPPT DC-DC converter, battery, inverter, AC loads, DC loads</li><li>Function of each component</li><li>DC-DC converters used: buck (battery charging), boost (raise PV voltage), buck-boost / SEPIC / Ćuk (MPPT)</li><li>Course map: devices (L2-8), DC-DC (L9-16), rectifiers (L17-22), resonant (L23-24), inverters (L25-30), AC-AC (L31-34), renewables (L35)</li></ul></div>
+    <div>
+      <h4>Do with your own hand</h4><ul class="boxes"><li>Draw the stand-alone PV system diagram and write one line per block</li></ul>
+      <h4>Past-paper hits</h4><ul class=""><li>2024 Q6d (stand-alone PV schematic, 5 marks)</li><li>2021 Q5a and 2023 Q5a (DC-DC converter types used in stand-alone PV, 5 marks)</li></ul>
+      
+    </div>
+  </div>
+  <h4>How to study it</h4><ol><li>Learn the block diagram and the converter list. 30 minutes.</li></ol>
+  <h4>Closed-book self-test (answer without looking)</h4><ul class="boxes"><li>Draw the stand-alone solar PV system and describe its components</li><li>Which DC-DC converters are used in a stand-alone PV system, and why?</li></ul>
+</section>
+
+<div class="pb"></div>
+<h2>6. External-examiner zone (not in the slides, but asked before)</h2>
+<p>Give these one session on Day 4. Even partial knowledge here can save 3 to 5 marks.</p>
+<table class="tbl"><tr><th style="width:34%">Topic</th><th>What to know</th></tr><tr><td><b>Parallel resonant DC-DC converter (V_s = 100 V, L_r = 8 µH, C_r = 0.32 µF, R_L = 10 Ω, f_s = 120 kHz)</b></td><td>Asked in 2022 and 2024 with the same numbers but not in the slides. Method: R_e = π²R_L/8 = 12.34 Ω; fundamental 4V_s/π; divide between jX_L = j6.03 Ω and R_e ∥ (−j4.14 Ω) to get V_C1,peak ≈ 190 V; V_o = 2V_C1/π ≈ 121 V. Check with Hart 9.6.</td></tr><tr><td><b>Power computation with non-sinusoidal waveforms (Hart ch.2)</b></td><td>Every TT-1 plus 2021 Q1c and 2023 Q1a,d. P = V_0I_0 + Σ V_n,rms I_n,rms cos(θ_n − φ_n); PF = P/(V_rms I_rms); DF = I_1/I_rms = 1/√(1 + THD²) (derivation asked); THD = √(I_rms² − I_1²)/I_1; crest factor = I_peak/I_rms.</td></tr><tr><td><b>Bipolar PWM inverter and harmonic elimination</b></td><td>2021 Q5c and 2023 Q5c (with a coefficient table given). V_1 = m_a V_dc; harmonics at m_f and m_f ± 2; I_n = V_n/Z_n; THD from the table.</td></tr><tr><td><b>DC motor and induction motor speed control</b></td><td>2021 Q6c (separately excited DC motor drive), 2022 Q3c (induction motor), 2020 TT-2 (field chopping). Learn one circuit each and the basic equations V_a = E_a + I_aR_a, E_a = Kω.</td></tr><tr><td><b>Buck converter design (5 V to 3.3 V, 1 to 2 A, 2% ripple, Δi_L ≤ 25%)</b></td><td>2022 Q2c. Use L09 to L12 formulas: D = 0.66; size L for the minimum current; C and ESR from the ripple limit.</td></tr><tr><td><b>Inverter for a resistive load with THD ≤ 5% (LC filter design)</b></td><td>2023 Q6a. Use a square-wave inverter plus an LC filter; size the filter so the 3rd harmonic is reduced enough.</td></tr><tr><td><b>TRIAC/DIAC structure, GTO, MCT; HVDC advantages</b></td><td>2023 Q6c, 2021 TT-1, 2023 Q3c. Quick notes are enough.</td></tr></table>
+
+<h2>7. In the exam hall</h2>
+<ol>
+<li>Read the whole paper first (3 minutes). Choose the optional question in each part by asking which one has more numericals you have practised.</li>
+<li>Time: about 2 minutes per mark. A 10-mark question gets about 20 minutes. Keep 10 minutes at the end to review.</li>
+<li>Start each part with your strongest compulsory question.</li>
+<li>Derivations: circuit, then equivalent circuits, then aligned waveforms, then equations, then boxed result.</li>
+<li>Numericals: formula, substitution, answer with unit, boxed. Partial marks depend on the formula line.</li>
+<li>Compare / differentiate: always a table of at least 5 rows.</li>
+<li>Surprise question: write the governing equation and draw the circuit anyway. Never leave a sub-part blank.</li>
+</ol>
+<p class="small">Numbers in this guide were checked against the solutions printed in the slides where available; the parallel resonant answer is our own calculation (the topic is not in the slides).</p>
+</body></html>

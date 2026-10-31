@@ -14,7 +14,7 @@ Almost every numerical in the **Batch 21 (2024)** paper is a **worked example th
 
 | 2024 question | Exact source in your slides |
 |---|---|
-| 1(c) Gate pulse width (I_H = 500 mA, t_d = 1.5 µs, L = 10 mH, R = 10 Ω, α = 30°) | Rashid thyristor example (SCR lectures, L07–08) |
+| 1(c) Gate pulse width (I_H = 500 mA, t_d = 1.5 µs, L = 10 mH, R = 10 Ω, α = 30°) | **NOT in slides.** Rashid thyristor-chapter textbook example; the theory is in L07 |
 | 2(a) Single-phase bridge, highly inductive load: HF and PF | **Rashid Example 3.4, Lecture 19** |
 | 2(b) Derive V_dc(α) for 3-phase full converter, with waveforms | **Rashid 10.4, Lecture 22** |
 | 3(c) 3-phase full converter: 208 V, R = 10 Ω, 50% of max | **Rashid Example 10.4, Lecture 22**, verbatim |
@@ -26,7 +26,7 @@ Almost every numerical in the **Batch 21 (2024)** paper is a **worked example th
 | 6(c) Parallel resonant DC-DC (V_s = 100 V, L_r = 8 µH, C_r = 0.32 µF) | **NOT in slides.** Copied word-for-word from the **2022 paper Q3(d)** |
 | Theory: two-transistor model, commutation, secondary breakdown, SEPIC vs buck-boost, Ćuk advantage, cycloconverter, solar PV | Slides L05, L07, L08, L14, L15, L33, L35, plus many repeats from 2021–2023 |
 
-About **96% of the 2024 question pool came from the slides.** Roughly **20–25%** also repeated earlier papers (cycloconverter, two-transistor model, commutation, SEPIC, solar PV, parallel resonant). This fits the 60/20/20 model you described.
+About **91% of the 2024 question pool came from the slides** (only the parallel resonant converter and the gate-pulse-width numerical did not). Roughly **20–25%** also repeated earlier papers (cycloconverter, two-transistor model, commutation, SEPIC, solar PV, parallel resonant). This fits the 60/20/20 model you described.
 
 **What this means for you:**
 1. Treat every worked example in the slides as a likely exam question. Learn each one fully (circuit, waveform, formula, final number).
