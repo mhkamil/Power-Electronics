@@ -1,0 +1,272 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Lecture 6 Previous-Year Solutions</title><style>
+@page { size: A4; margin: 14mm 14mm 16mm 14mm; }
+body { font-family: 'DejaVu Sans', Arial, sans-serif; font-size: 10pt; line-height: 1.45; color: #1b1b1b; }
+h1 { color: #0d3b66; font-size: 20pt; margin: 0 0 2px; }
+h2 { color: #fff; background: #0d3b66; font-size: 12.5pt; padding: 5px 10px; border-radius: 4px; margin: 16px 0 6px; break-after: avoid; }
+h3 { color: #0d3b66; font-size: 11pt; margin: 10px 0 4px; break-after: avoid; }
+.box { background: #f1f6fb; border-left: 4px solid #0d3b66; padding: 6px 12px; margin: 6px 0; break-inside: avoid; }
+.key { background: #fff6e5; border-left: 4px solid #e08e0b; padding: 6px 12px; margin: 6px 0; break-inside: avoid; }
+.ans { background: #eaf6ee; border: 2px solid #2e8b57; padding: 6px 12px; margin: 6px 0; border-radius: 4px; }
+.q { border: 1px solid #c9d3de; border-top: 4px solid #c0392b; border-radius: 6px; padding: 6px 12px; margin: 10px 0; break-inside: avoid; }
+.qh { font-weight: bold; color: #c0392b; }
+.tag { display: inline-block; background: #c0392b; color: #fff; font-size: 8.5pt; padding: 1px 6px; border-radius: 3px; margin-right: 4px; }
+.tag.b { background: #1d6fb8; }
+table { border-collapse: collapse; width: 100%; font-size: 9.2pt; margin: 6px 0; break-inside: avoid; }
+td, th { border: 1px solid #bbb; padding: 3px 6px; vertical-align: top; } th { background: #e6edf5; text-align: left; }
+.fig { text-align: center; margin: 6px 0; break-inside: avoid; }
+.cap { font-size: 8.8pt; color: #555; }
+.mono { font-family: 'DejaVu Sans Mono', monospace; }
+.pb { break-before: page; }
+ul, ol { margin: 3px 0 3px 20px; padding: 0; } li { margin: 2px 0; }
+.small { font-size: 8.8pt; color: #555; }
+.flow { font-family: 'DejaVu Sans Mono', monospace; background: #fdf0ef; padding: 4px 8px; border-radius: 4px; display: inline-block; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }</style></head><body>
+<h1>Lecture 6: Power MOSFET and IGBT</h1>
+<div class="small">EEE 339 Power Electronics · Previous-year question solutions · Source: <i>class slides/Lecture 06 Power MOSFET and IGBT.pdf</i> (Rashid ch. 4)</div>
+
+<div class="key"><b>Questions from this lecture in the 2021 to 2024 finals:</b>
+<table>
+<tr><th>Year</th><th>Question</th><th>Marks</th></tr>
+<tr><td>2023 Q3(b)</td><td>Draw the cross-section of an IGBT showing the layers; differentiate PT and NPT IGBTs</td><td>≈ 6</td></tr>
+<tr><td>2022 Q6(d)</td><td>Briefly describe the half-cell model of an IGBT with appropriate figure</td><td>7</td></tr>
+<tr><td>2022 Q6(b)</td><td>Write the advantages of using IGBT as a switch</td><td>4</td></tr>
+<tr><td>2021 Q3(d)</td><td>With diagram, explain the pinch-off condition in a power MOSFET</td><td>4</td></tr>
+<tr><td>2022 Q4(a), 2021 Q1(a)</td><td>BJT vs MOSFET; BJT vs MOSFET vs IGBT comparison</td><td>5, 7</td></tr>
+</table>
+The IGBT was asked in 2022 and 2023, so it is the most likely topic from this lecture again.</div>
+
+<h2>Q1 · 2023 Q3(b): IGBT cross-section; PT vs NPT IGBT</h2>
+<div class="q" style="border-top-color:#0d3b66"><span class="qh" style="color:#0d3b66">Q. Draw the cross-section of an IGBT showing the layers. Differentiate between punch-through and non-punch-through IGBTs.</span></div>
+<h3>(a) Cross-section</h3>
+<div class="fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="88%" font-family="Arial" font-size="11">
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#222"/></marker></defs>
+<rect x="120" y="300" width="360" height="30" fill="#f6c4c0" stroke="#222" stroke-width="1"/><text x="220" y="319" font-size="11" font-weight="bold">p⁺ substrate (injecting layer)</text>
+<rect x="120" y="275" width="360" height="25" fill="#f3a6a0" stroke="#222" stroke-width="1"/><text x="230" y="292" font-size="11">n⁺ buffer layer (PT only)</text>
+<rect x="120" y="100" width="360" height="175" fill="#fde9c8" stroke="#222" stroke-width="1"/><text x="260" y="200" font-size="11" font-weight="bold">n⁻ drift region</text>
+<rect x="120" y="60" width="135" height="70" fill="#cfe3f7" stroke="#222" stroke-width="1"/>
+<rect x="345" y="60" width="135" height="70" fill="#cfe3f7" stroke="#222" stroke-width="1"/>
+<text x="130" y="118" font-weight="bold">p body</text><text x="420" y="118" font-weight="bold">p body</text>
+<rect x="175" y="60" width="60" height="22" fill="#f3a6a0" stroke="#222" stroke-width="1"/><text x="198" y="75" font-size="11">n⁺</text>
+<rect x="365" y="60" width="60" height="22" fill="#f3a6a0" stroke="#222" stroke-width="1"/><text x="388" y="75" font-size="11">n⁺</text>
+<rect x="120" y="46" width="90" height="14" fill="#9a9a9a" stroke="#222" stroke-width="1"/>
+<rect x="390" y="46" width="90" height="14" fill="#9a9a9a" stroke="#222" stroke-width="1"/>
+<line x1="165" y1="46" x2="165" y2="24" stroke="#222"/><line x1="435" y1="46" x2="435" y2="24" stroke="#222"/><line x1="165" y1="24" x2="435" y2="24" stroke="#222"/><text x="270.0" y="18" font-weight="bold">Emitter (E)</text>
+<rect x="220" y="54" width="160" height="6" fill="#ffffff" stroke="#222" stroke-width="1"/>
+<rect x="225" y="38" width="150" height="16" fill="#b9a3d6" stroke="#222" stroke-width="1"/><text x="276.0" y="50" font-size="11" font-weight="bold">Gate (G)</text>
+<rect x="120" y="330" width="360" height="10" fill="#9a9a9a" stroke="#222" stroke-width="1"/>
+<text x="264.0" y="355" font-weight="bold">Collector (C)</text>
+<rect x="242" y="60" width="10" height="4" fill="#c0392b"/>
+<rect x="348" y="60" width="10" height="4" fill="#c0392b"/>
+<text x="488" y="70" fill="#c0392b">← n-channel</text>
+<text x="488" y="52" font-size="10" fill="#555">← SiO₂ (oxide)</text>
+<line x1="260" y1="70" x2="285" y2="170" stroke="#1d6fb8" stroke-width="2" marker-end="url(#ar)"/><text x="288" y="150" fill="#1d6fb8">e⁻</text>
+<line x1="340" y1="295" x2="340" y2="140" stroke="#c0392b" stroke-width="2" marker-end="url(#ar)"/><text x="346" y="240" fill="#c0392b">holes (h⁺) injected</text>
+<text x="10" y="200" font-size="10" fill="#555">thick, lightly</text><text x="10" y="212" font-size="10" fill="#555">doped: blocks</text><text x="10" y="224" font-size="10" fill="#555">the voltage</text>
+</svg><div class="cap">Fig. 1: Cross-section of one IGBT cell (punch-through type). The NPT type has no n⁺ buffer layer.</div></div>
+<p><b>Layers from collector to emitter:</b></p>
+<ol>
+<li><b>p⁺ substrate (collector):</b> the injecting layer. It injects holes into the drift region when the device is on. This is what makes the IGBT different from a MOSFET (a MOSFET has n⁺ here).</li>
+<li><b>n⁺ buffer layer</b> (PT only): stops the depletion region from reaching the p⁺ layer.</li>
+<li><b>n⁻ drift region:</b> thick and lightly doped; it supports the blocking voltage.</li>
+<li><b>p body:</b> the channel is formed in this layer under the gate.</li>
+<li><b>n⁺ emitter</b> regions inside the p body, contacted by the emitter metal (the metal also shorts n⁺ to the p body).</li>
+<li><b>Gate:</b> polysilicon over a thin <b>SiO₂</b> layer, so the gate is insulated (very high input impedance).</li>
+</ol>
+<p><b>Operation in one line:</b> V_GE &gt; V_th creates an n-channel in the p body, like a MOSFET. Electrons flow from the n⁺ emitter through the channel into the drift region; the p⁺ layer then injects holes. The drift region is flooded with carriers (<b>conductivity modulation</b>), so the on-state drop is low.</p>
+
+<h3>(b) PT vs NPT IGBT</h3>
+<div class="fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" width="90%" font-family="Arial" font-size="11">
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#222"/></marker></defs>
+<text x="20" y="20" font-weight="bold" font-size="12">Punch-through (PT)</text>
+<rect x="20" y="40" width="150" height="22" fill="#cfe3f7" stroke="#222" stroke-width="1"/><text x="26" y="55" font-size="11">p body / n⁺ emitter</text>
+<rect x="20" y="62" width="150" height="120" fill="#fde9c8" stroke="#222" stroke-width="1"/><text x="65" y="126.0" font-size="11" font-weight="bold">n⁻ drift</text>
+<rect x="20" y="182" width="150" height="22" fill="#f3a6a0" stroke="#222" stroke-width="1"/><text x="65" y="197" font-size="11">n⁺ buffer</text>
+<rect x="20" y="204" width="150" height="70" fill="#f6c4c0" stroke="#222" stroke-width="1"/><text x="24" y="243.0" font-size="11">p⁺ collector (thick substrate)</text>
+<line x1="190" y1="62" x2="190" y2="212" stroke="#222"/><text x="194" y="56" font-size="10">E-field</text>
+<polygon points="190,62 300,62 250,182 190,182" fill="#c0392b" fill-opacity="0.25" stroke="#c0392b"/>
+<text x="194" y="204" font-size="10" fill="#c0392b">trapezoidal: field</text><text x="194" y="216" font-size="10" fill="#c0392b">reaches the buffer</text>
+<text x="340" y="20" font-weight="bold" font-size="12">Non-punch-through (NPT)</text>
+<rect x="340" y="40" width="150" height="22" fill="#cfe3f7" stroke="#222" stroke-width="1"/><text x="346" y="55" font-size="11">p body / n⁺ emitter</text>
+<rect x="340" y="62" width="150" height="190" fill="#fde9c8" stroke="#222" stroke-width="1"/><text x="385" y="161.0" font-size="11" font-weight="bold">n⁻ drift</text>
+<rect x="340" y="252" width="150" height="22" fill="#f6c4c0" stroke="#222" stroke-width="1"/><text x="344" y="267.0" font-size="11">p⁺ collector (thin)</text>
+<line x1="510" y1="62" x2="510" y2="282" stroke="#222"/><text x="514" y="56" font-size="10">E-field</text>
+<polygon points="510,62 620,62 510,223.5" fill="#c0392b" fill-opacity="0.25" stroke="#c0392b"/>
+<text x="514" y="274" font-size="10" fill="#c0392b">triangular: field ends</text><text x="514" y="286" font-size="10" fill="#c0392b">inside the drift region</text>
+</svg><div class="cap">Fig. 2: Layer stacks and electric-field shapes of PT and NPT IGBTs in the blocking state.</div></div>
+<table>
+<tr><th style="width:24%">Feature</th><th>Punch-through (PT)</th><th>Non-punch-through (NPT)</th></tr>
+<tr><td>n⁺ buffer layer</td><td><b>Yes</b>, between p⁺ and n⁻</td><td><b>No</b></td></tr>
+<tr><td>Field in blocking state</td><td>Depletion "punches through" the drift region to the buffer (trapezoidal field)</td><td>Depletion ends inside the drift region (triangular field)</td></tr>
+<tr><td>Drift region</td><td>Thinner</td><td>Thicker</td></tr>
+<tr><td>p⁺ collector</td><td>Thick, heavily doped substrate (epitaxial wafer)</td><td>Thin, lightly doped layer on the back of the wafer</td></tr>
+<tr><td>On-state drop V_CE(sat)</td><td>Lower</td><td>Slightly higher</td></tr>
+<tr><td>Turn-off / tail current</td><td>Faster (with lifetime control); switching losses rise with temperature</td><td>Longer tail but losses nearly independent of temperature</td></tr>
+<tr><td>Reverse blocking</td><td>Very low (asymmetric)</td><td>Can block reverse voltage (symmetric)</td></tr>
+<tr><td>Temperature coefficient of V_CE(sat)</td><td>Negative at normal currents: harder to parallel</td><td><b>Positive</b>: easy to parallel</td></tr>
+<tr><td>Ruggedness</td><td>Lower short-circuit capability</td><td>More rugged (better short-circuit capability)</td></tr>
+</table>
+
+<div class="pb"></div>
+<h2>Q2 · 2022 Q6(d): Half-cell model of an IGBT [7]</h2>
+<div class="q" style="border-top-color:#0d3b66"><span class="qh" style="color:#0d3b66">Q. Briefly describe the half-cell model of an IGBT with appropriate figure.</span></div>
+<div class="two">
+<div class="fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 330" width="100%" font-family="Arial" font-size="10">
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#222"/></marker></defs>
+<rect x="60" y="270" width="300" height="30" fill="#f6c4c0" stroke="#222" stroke-width="1"/><text x="170" y="289" font-size="11" font-weight="bold">p⁺ collector</text>
+<rect x="60" y="250" width="300" height="20" fill="#f3a6a0" stroke="#222" stroke-width="1"/><text x="180" y="264" font-size="11">n⁺ buffer</text>
+<rect x="60" y="90" width="300" height="160" fill="#fde9c8" stroke="#222" stroke-width="1"/><text x="260" y="200" font-size="11" font-weight="bold">n⁻ drift</text>
+<rect x="60" y="60" width="150" height="80" fill="#cfe3f7" stroke="#222" stroke-width="1"/>
+<text x="68" y="132" font-weight="bold">p body</text>
+<rect x="120" y="60" width="70" height="22" fill="#f3a6a0" stroke="#222" stroke-width="1"/><text x="126" y="75" font-size="11">n⁺ emitter</text>
+<rect x="60" y="46" width="100" height="14" fill="#9a9a9a" stroke="#222" stroke-width="1"/>
+<text x="80" y="40" font-weight="bold">Emitter E</text>
+<rect x="170" y="54" width="190" height="6" fill="#ffffff" stroke="#222" stroke-width="1"/>
+<rect x="175" y="38" width="185" height="16" fill="#b9a3d6" stroke="#222" stroke-width="1"/><text x="250" y="50" font-size="11" font-weight="bold">Gate G</text>
+<rect x="60" y="300" width="300" height="8" fill="#9a9a9a" stroke="#222" stroke-width="1"/>
+<text x="180" y="322" font-weight="bold">Collector C</text>
+<path d="M190,92 l-8,6 l-8,-6 l-8,6 l-8,-6 l-8,6 l-8,-6 l-8,6 l-8,-6" fill="none" stroke="#e08e0b" stroke-width="2"/>
+<text x="78" y="110" fill="#e08e0b" font-weight="bold">R_s (p-body resistance)</text>
+<text x="220" y="160" fill="#c0392b" font-weight="bold">PNP: p⁺ – n⁻ – p body</text>
+<text x="220" y="122" fill="#1d6fb8" font-weight="bold">NPN (parasitic): n⁺ – p – n⁻</text>
+<text x="220" y="82" fill="#2e8b57" font-weight="bold">MOSFET channel</text>
+<line x1="217" y1="80" x2="197" y2="64" stroke="#2e8b57" marker-end="url(#ar)"/>
+</svg><div class="cap">Fig. 3a: Half cell with the parasitic devices.</div></div>
+<div class="fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 330" width="100%" font-family="Arial" font-size="10">
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#222"/></marker></defs>
+<defs><marker id="ab" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#222"/></marker></defs>
+<line x1="300" y1="20" x2="300" y2="60" stroke="#222" stroke-width="1.6" />
+<circle cx="300" cy="20" r="3" fill="#222"/><text x="308" y="24" font-weight="bold" font-size="12">C</text>
+<line x1="280" y1="72" x2="280" y2="108" stroke="#222" stroke-width="1.6" stroke-width="3"/>
+<line x1="300" y1="60" x2="282" y2="78" stroke="#222" stroke-width="1.6" marker-end="url(#ab)"/>
+<line x1="282" y1="102" x2="300" y2="118" stroke="#222" stroke-width="1.6" />
+<line x1="300" y1="118" x2="300" y2="190" stroke="#222" stroke-width="1.6" />
+<text x="310" y="92" fill="#c0392b" font-weight="bold">Q1 PNP</text>
+<line x1="280" y1="90" x2="150" y2="90" stroke="#222" stroke-width="1.6" />
+<circle cx="230" cy="90" r="2.5" fill="#222"/>
+<line x1="245" y1="172" x2="245" y2="208" stroke="#222" stroke-width="1.6" stroke-width="3"/>
+<line x1="245" y1="180" x2="230" y2="165" stroke="#222" stroke-width="1.6" />
+<line x1="230" y1="165" x2="230" y2="90" stroke="#222" stroke-width="1.6" />
+<line x1="245" y1="200" x2="230" y2="215" stroke="#222" stroke-width="1.6" marker-end="url(#ab)"/>
+<line x1="230" y1="215" x2="230" y2="270" stroke="#222" stroke-width="1.6" />
+<line x1="245" y1="190" x2="300" y2="190" stroke="#222" stroke-width="1.6" />
+<circle cx="300" cy="190" r="2.5" fill="#222"/>
+<text x="168" y="196" fill="#1d6fb8" font-weight="bold">Q2 NPN</text><text x="160" y="208" fill="#1d6fb8">(parasitic)</text>
+<line x1="300" y1="190" x2="300" y2="205" stroke="#222" stroke-width="1.6" />
+<polyline points="300,205 293,210 307,216 293,222 307,228 293,234 307,240 293,246 307,252 300,262" fill="none" stroke="#e08e0b" stroke-width="2"/>
+<line x1="300" y1="262" x2="300" y2="270" stroke="#222" stroke-width="1.6" />
+<text x="312" y="238" fill="#e08e0b" font-weight="bold">R_s</text>
+<line x1="150" y1="90" x2="150" y2="150" stroke="#222" stroke-width="1.6" />
+<line x1="150" y1="150" x2="128" y2="150" stroke="#222" stroke-width="1.6" />
+<line x1="128" y1="145" x2="128" y2="215" stroke="#222" stroke-width="1.6" stroke-width="3"/>
+<line x1="118" y1="150" x2="118" y2="210" stroke="#222" stroke-width="1.6" />
+<line x1="80" y1="180" x2="118" y2="180" stroke="#222" stroke-width="1.6" />
+<text x="64" y="176" font-weight="bold" font-size="12">G</text><circle cx="80" cy="180" r="3" fill="#222"/>
+<line x1="128" y1="210" x2="150" y2="210" stroke="#222" stroke-width="1.6" />
+<line x1="150" y1="210" x2="150" y2="270" stroke="#222" stroke-width="1.6" />
+<line x1="150" y1="180" x2="130" y2="180" stroke="#222" stroke-width="1.6" marker-end="url(#ab)"/>
+<line x1="150" y1="180" x2="150" y2="210" stroke="#222" stroke-width="1.6" />
+<text x="40" y="130" fill="#2e8b57" font-weight="bold">M1 MOSFET</text>
+<line x1="150" y1="270" x2="300" y2="270" stroke="#222" stroke-width="1.6" />
+<line x1="225" y1="270" x2="225" y2="300" stroke="#222" stroke-width="1.6" />
+<circle cx="225" cy="300" r="3" fill="#222"/><text x="233" y="304" font-weight="bold" font-size="12">E</text>
+<text x="20" y="324" fill="#555">Q1 + Q2 = parasitic thyristor (p⁺n⁻pn⁺) → latch-up if V(R_s) &gt; 0.7 V</text>
+</svg><div class="cap">Fig. 3b: Equivalent circuit of the half cell.</div></div>
+</div>
+<p>An IGBT chip is made of thousands of identical cells. Because each cell is symmetric, <b>half a cell</b> is enough to model the device. The half cell contains:</p>
+<ol>
+<li><b>MOSFET M1</b>: n⁺ emitter, p body (channel) and n⁻ drift, controlled by the insulated gate.</li>
+<li><b>PNP transistor Q1</b>: p⁺ collector (emitter of Q1), n⁻ drift (base of Q1), p body (collector of Q1). This is the main bipolar path.</li>
+<li><b>Parasitic NPN transistor Q2</b>: n⁺ emitter, p body (base), n⁻ drift (collector).</li>
+<li><b>R_s</b>: the lateral resistance of the p body under the n⁺ emitter, between the base of Q2 and the emitter contact.</li>
+</ol>
+<p><b>Normal operation:</b></p>
+<ul>
+<li>A gate voltage above V_th creates the channel. The MOSFET's electron current flows into the n⁻ drift, which is the <b>base current of the PNP</b>.</li>
+<li>The PNP turns on and the p⁺ layer injects holes: conductivity modulation gives a low V_CE(sat).</li>
+<li>So the IGBT behaves like a <b>MOSFET driving a PNP transistor</b> (the slide calls it a Darlington of an IGFET and a BJT): I_C = I_MOS + β_PNP·I_MOS = (1 + β_PNP)·I_MOS.</li>
+<li>The holes collected by the p body flow to the emitter contact through R_s.</li>
+</ul>
+<p><b>Latch-up:</b></p>
+<ul>
+<li>If the hole current is too large, the drop across R_s exceeds about 0.7 V and forward-biases the n⁺–p junction, so the <b>parasitic NPN turns on</b>.</li>
+<li>Q1 and Q2 then form a <b>parasitic thyristor</b> (p⁺n⁻pn⁺) that latches on, and the gate <b>loses control</b>; the device can be destroyed.</li>
+<li><b>Prevention:</b> keep R_s small (heavy p⁺ doping under the emitter, short n⁺ regions), short the n⁺ and p body with the emitter metal, and limit the current.</li>
+</ul>
+
+<h2>Q3 · 2022 Q6(b): Advantages of IGBT as a switch [4]</h2>
+<div class="ans">
+<ol>
+<li><b>Voltage-controlled</b> insulated (MOS) gate: very high input impedance, negligible gate current, simple and cheap drive circuit.</li>
+<li><b>Low on-state voltage drop</b> (like a BJT) because of conductivity modulation, so low conduction loss, much lower than a high-voltage MOSFET.</li>
+<li><b>High voltage and current ratings</b> (up to several kV and kA) with high current density, so a smaller chip.</li>
+<li><b>Faster switching than a BJT</b>; good for PWM inverters and drives (about 20–50 kHz).</li>
+<li>Turned on and off by the gate: <b>no commutation circuit</b> needed (unlike an SCR).</li>
+<li>Wide safe operating area; less prone to second breakdown than a BJT.</li>
+<li>NPT IGBTs have a positive temperature coefficient, so they are <b>easy to parallel</b>.</li>
+</ol>
+<span class="small">If the question also asks for disadvantages (slide): slower turn-off than a BJT or MOSFET because of the <b>tail current</b>; faster turn-off is possible only with a higher V_CE(sat); latch-up risk.</span>
+</div>
+
+<div class="pb"></div>
+<h2>Q4 · 2021 Q3(d): Pinch-off condition in a power MOSFET [4]</h2>
+<div class="q" style="border-top-color:#0d3b66"><span class="qh" style="color:#0d3b66">Q. With diagram, explain the pinch-off condition in a power MOSFET.</span></div>
+<div class="fig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260" width="98%" font-family="Arial" font-size="11">
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#222"/></marker></defs>
+<rect x="20" y="70" width="280" height="130" fill="#cfe3f7" stroke="#222" stroke-width="1"/><text x="110" y="180" font-size="11" font-weight="bold">p substrate (body)</text>
+<rect x="30" y="70" width="60" height="30" fill="#f3a6a0" stroke="#222" stroke-width="1"/><text x="32" y="90" font-size="11">n⁺ source</text>
+<rect x="230" y="70" width="60" height="30" fill="#f3a6a0" stroke="#222" stroke-width="1"/><text x="234" y="90" font-size="11">n⁺ drain</text>
+<rect x="80" y="62" width="160" height="8" fill="#ffffff" stroke="#222" stroke-width="1"/>
+<rect x="85" y="44" width="150" height="18" fill="#b9a3d6" stroke="#222" stroke-width="1"/><text x="145" y="57" font-size="11" font-weight="bold">Gate</text>
+<polygon points="90,70 90,84 220,71 220,70" fill="#1d6fb8" fill-opacity="0.75"/>
+<circle cx="220" cy="71" r="4" fill="none" stroke="#c0392b" stroke-width="2"/>
+<line x1="225" y1="115" x2="221" y2="76" stroke="#c0392b" marker-end="url(#ar)"/><text x="170" y="128" fill="#c0392b" font-weight="bold">pinch-off point</text>
+<text x="92" y="112" fill="#1d6fb8">channel narrows toward drain</text>
+<text x="80" y="30">V_GS &gt; V_T</text><text x="220" y="30">V_DS = V_GS − V_T</text>
+<line x1="370" y1="220" x2="660" y2="220" stroke="#222" marker-end="url(#ar)"/><text x="664" y="224">V_DS</text>
+<line x1="370" y1="220" x2="370" y2="20" stroke="#222" marker-end="url(#ar)"/><text x="376" y="26">I_D</text>
+<path d="M370,220 Q392.0,180 410,180 L610,176" fill="none" stroke="#1d6fb8" stroke-width="2"/>
+<text x="614" y="180" fill="#1d6fb8">V_GS1</text>
+<path d="M370,220 Q403.0,140 430,140 L610,136" fill="none" stroke="#1d6fb8" stroke-width="2"/>
+<text x="614" y="140" fill="#1d6fb8">V_GS2</text>
+<path d="M370,220 Q414.0,95 450,95 L610,91" fill="none" stroke="#1d6fb8" stroke-width="2"/>
+<text x="614" y="95" fill="#1d6fb8">V_GS3</text>
+<path d="M370,220 Q425.0,50 470,50 L610,46" fill="none" stroke="#1d6fb8" stroke-width="2"/>
+<text x="614" y="50" fill="#1d6fb8">V_GS4</text>
+<path d="M370,220 Q440,180 475,35" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="488" y="70" fill="#c0392b" font-weight="bold">pinch-off locus</text><text x="488" y="83" fill="#c0392b">V_DS = V_GS − V_T</text>
+<text x="378" y="206" fill="#555">ohmic</text><text x="520" y="206" fill="#555">active (saturation)</text>
+<text x="470" y="238" fill="#555">cut-off: V_GS &lt; V_T, I_D = 0</text>
+</svg><div class="cap">Fig. 4: Left: channel pinch-off at the drain end. Right: output characteristics; the pinch-off locus separates the ohmic and active regions.</div></div>
+<ol>
+<li><b>Channel formation:</b> for an n-channel enhancement MOSFET, a gate-source voltage V_GS above the threshold V_T induces an n-type inversion channel between source and drain.</li>
+<li><b>Ohmic region:</b> for a small V_DS the channel has the same depth along its length and behaves like a resistor (R_DS(on)); I_D rises almost linearly with V_DS.</li>
+<li><b>Channel narrowing:</b> as V_DS increases, the gate-to-channel voltage at the drain end, V_GD = V_GS − V_DS, decreases, so the channel becomes thinner near the drain.</li>
+<li><b>Pinch-off:</b> when V_GD = V_T, that is
+<div class="mono" style="margin:4px 0 4px 20px"><b>V_DS = V_GS − V_T</b></div>
+the channel depth at the drain end becomes zero. This is the <b>pinch-off condition</b>.</li>
+<li><b>Beyond pinch-off</b> (V_DS &gt; V_GS − V_T): the extra voltage is dropped across the small depletion region near the drain; the current stops increasing and stays at I_D ≈ K(V_GS − V_T)². The MOSFET is in the <b>active (saturation) region</b>, where I_D is controlled by V_GS only.</li>
+<li>The locus of pinch-off points, <b>I_D = K·V_DS²</b>, is the boundary between the ohmic and active regions (dashed line in Fig. 4).</li>
+</ol>
+<p class="small">For switching, a power MOSFET is used in the ohmic region (ON) and cut-off (OFF); the active region is crossed only during transitions.</p>
+
+<h2>Q5 · 2022 Q4(a) and 2021 Q1(a): Comparisons</h2>
+<p>These are answered in full in your <b>Lecture 5 notes</b> (pages 8 to 9): BJT vs MOSFET (10-row table) and BJT vs MOSFET vs IGBT (power handling, input impedance, switching speed, on-state resistance, blocking voltage). Short version to remember:</p>
+<table>
+<tr><th>Parameter</th><th>BJT</th><th>MOSFET</th><th>IGBT</th></tr>
+<tr><td>Control / input impedance</td><td>Current / low</td><td>Voltage / very high</td><td>Voltage / very high</td></tr>
+<tr><td>Speed</td><td>Slow</td><td>Fastest</td><td>Medium</td></tr>
+<tr><td>On-state drop</td><td>Low</td><td>High at high voltage</td><td>Low</td></tr>
+<tr><td>Power / voltage</td><td>Medium</td><td>Low-medium</td><td>High</td></tr>
+<tr><td>Second breakdown</td><td>Yes</td><td>No</td><td>Less prone</td></tr>
+</table>
+
+<h2>Likely new questions from this lecture (short answers)</h2>
+<div class="q"><span class="tag b">Predicted</span><span class="qh">Q. Write the features and disadvantages of a power MOSFET.</span>
+<div class="ans"><b>Features (slide):</b> low input current; voltage-controlled; high switching speed; no second breakdown; high input impedance; unipolar; no commutation circuit needed; small size; small holding power.<br>
+<b>Disadvantages (slide):</b> high on-state voltage, so high conduction loss compared with a BJT; easily damaged by static electricity, so it needs careful handling; asymmetric blocking: blocks high forward voltage but not high reverse voltage.</div></div>
+<div class="q"><span class="tag b">Predicted</span><span class="qh">Q. Why is a vertical (VDMOS) structure used for power MOSFETs?</span>
+<div class="ans">In a lateral MOSFET both the current and the breakdown voltage depend on the channel dimensions, so it is inefficient. In the vertical, double-diffused MOSFET the source is on top and the drain at the bottom, so current flows vertically. The <b>voltage rating depends on the doping and thickness of the n⁻ layer</b>, while the <b>current rating depends on the channel width</b>. The device can therefore handle high voltage and high current without becoming large. "Double-diffused" refers to the p and n⁺ wells made by two diffusions.</div></div>
+<div class="q"><span class="tag b">Predicted</span><span class="qh">Q. Why was the IGBT developed? / Explain the turn-off of a power MOSFET.</span>
+<div class="ans"><b>Why IGBT:</b> a BJT needs a large base current (even as a Darlington); a MOSFET needs almost no gate current but has a high on-state drop at high current. The IGBT combines the MOSFET's insulated gate with the BJT's low on-state drop.<br>
+<b>MOSFET turn-off (slide):</b> t5: v_GS falls, C_GS discharges and C_GD charges; i_D and v_DS unchanged. t6: v_DS rises to V_CC while v_GS stays constant (Miller plateau); then the diode turns on and i_D starts to fall. t7: v_GS falls to V_T and i_D falls to zero (cut-off). t6 and t7 have both i_D and v_DS present, so they cause the switching loss.</div></div>
+</body></html>
