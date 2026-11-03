@@ -176,15 +176,13 @@ LECTURES = [
         practice=[
             "Derive I_A from the two-transistor model (draw the model first)",
             "Draw the SCR I-V curve with I_L, I_H, V_BO, gate-current family",
-            "Gate pulse width numerical (2024 Q1c): i(t) = (V_s/R)(1 − e^(−tR/L)); t_G = t(I_H) + t_d ≈ 62.2 µs",
         ],
-        past=["Two-transistor model in EVERY final: 2021 Q2b, 2022 Q4c, 2023 Q2a, 2024 Q1a", "2021 TT-1 (five turn-on methods; effect of dv/dt)", "2020 TT-1 (I-V curve, holding and latching current)", "2024 Q1c (minimum gate pulse width; this example is not in the slides)"],
+        past=["Two-transistor model in EVERY final: 2021 Q2b, 2022 Q4c, 2023 Q2a, 2024 Q1a", "2021 TT-1 (five turn-on methods; effect of dv/dt)", "2020 TT-1 (I-V curve, holding and latching current)"],
         formulas=["I_A = (α₂I_G + I_CBO1 + I_CBO2) / (1 − α₁ − α₂)", "t_q = t_rr + t_rc", "i_j2 = C_j2 (dv/dt)"],
         how=[
             "This is the single most repeated topic in 4 years. Practise the derivation until you can write it in 6 minutes.",
             "Steps: split PNPN into PNP (Q1) and NPN (Q2), then write I_C1 = α₁I_A + I_CBO1 and I_C2 = α₂I_K + I_CBO2, then I_A = I_C1 + I_C2 with I_K = I_A + I_G, then solve for I_A.",
             "Learn 5 turn-on methods with one line each, and the I-V curve.",
-            "Do the gate pulse width numerical once (V_s = √2·120·sin30° = 84.85 V).",
         ],
         selftest=["With the two-transistor model, explain the turn-on of an SCR (with equations)", "Define latching and holding current on the I-V curve", "Name 5 methods to turn on an SCR; explain the dv/dt effect"],
     ),
@@ -204,8 +202,8 @@ LECTURES = [
             "Class D: auxiliary (impulse) commutation",
             "Class E: external pulse commutation",
         ],
-        practice=["Draw one forced commutation circuit (Class C) with waveforms", "Draw the turn-on and turn-off characteristic (i_A, v_AK vs t)"],
-        past=["2022 Q4d (methods of SCR turn-on and turn-off, 8 marks)", "2024 Q1b (natural vs forced commutation with a device example)", "2021 Q3c (describe one forced commutation circuit with waveforms)"],
+        practice=["Draw one forced commutation circuit (Class C) with waveforms", "Draw the turn-on and turn-off characteristic (i_A, v_AK vs t)", "Slide Example 14-1 (2024 Q1c verbatim): minimum gate pulse width, V₁ = 84.85 V, di/dt = V₁/L = 8485 A/s, t₁ = 58.93 µs, t_G = 60.43 µs"],
+        past=["2024 Q1c = slide Example 14-1 verbatim (minimum gate pulse width, 7 marks)", "2022 Q4d (methods of SCR turn-on and turn-off, 8 marks)", "2024 Q1b (natural vs forced commutation with a device example)", "2021 Q3c (describe one forced commutation circuit with waveforms)"],
         formulas=["t_on = t_d + t_r + t_p", "t_q = t_rr + t_gr", "Condition: t_c > t_q"],
         how=[
             "Learn natural vs forced as a 2-column table (source of reverse voltage, AC vs DC, examples).",

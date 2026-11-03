@@ -126,8 +126,8 @@ ul.mono li {{ font-family: 'DejaVu Sans Mono', monospace; font-size: 8.6pt; }}
 <h2>1. How the paper is set, and why this plan works</h2>
 <ul>
 <li><b>About 60% comes from the teacher's slides and notes, about 20% from previous papers, about 20% is the external examiner's choice.</b></li>
-<li>In the <b>2024 paper (Batch 21, same teacher, same slides)</b>, 7 numericals were slide examples copied with the same numbers: Rashid Ex 3.4 (L19), Rashid Ex 10.4 (L22), Hart Ex 3-5 (L17), Hart Ex 4-1 (L18), Hart Ex 6-6 (L13), and both AC-controller class examples (L31_32). About 91% of the paper's marks came from the slides.</li>
-<li>The external examiner's part repeated older papers (the parallel resonant converter came word for word from 2022) or took textbook items next to the slides (for example the SCR gate-pulse-width numerical).</li>
+<li>In the <b>2024 paper (Batch 21, same teacher, same slides)</b>, 8 numericals were slide examples copied with the same numbers: the SCR gate-pulse example (L08), Rashid Ex 3.4 (L19), Rashid Ex 10.4 (L22), Hart Ex 3-5 (L17), Hart Ex 4-1 (L18), Hart Ex 6-6 (L13), and both AC-controller class examples (L31_32). About 96% of the paper's marks came from the slides.</li>
+<li>The external examiner's part repeated older papers (the parallel resonant converter came word for word from 2022).</li>
 <li><b>Inverters got only 5 marks in 2024</b>, but your batch had two inverter assessments (#5 and #6). Expect a full inverter question in Part B.</li>
 <li>Topics asked in <b>all four</b> years: SCR two-transistor model, cycloconverter, device comparison, full-wave rectifiers, 3-phase rectifiers, buck / buck-boost numericals.</li>
 </ul>
